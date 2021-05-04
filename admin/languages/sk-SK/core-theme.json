@@ -1,0 +1,51 @@
+{
+    "list": {
+        "title": "Témy",
+        "add": "Pridat tému",
+        "list": {
+            "title": "Názov",
+            "name": "Meno",
+            "description": "Popis",
+            "main_theme": "Hlavná téma",
+            "actions": "Akcie",
+            "set_main_theme": "Nastaviť ako hlavnú tému",
+            "delete": "Vymazať",
+            "are_you_sure": "Ste si istý, že chcete vymazať tému?",
+            "repeate_text": "Zopakujte text",
+            "set_as_main_theme": "Nastaviť ako hlavnú tému?"
+        },
+        "info": {
+            "main_theme": [
+                "Téma bola úspešne nastavená ako hlavná",
+                "Nastavenie ako hlavnej témy bolo prerušené",
+                "Nastavenie ako hlavnej témy zlyhalo, opakujte proces"
+            ],
+            "delete": [
+                "Téma bola úspešne vymazaná",
+                "Vymazanie témy bolo prerušené",
+                "Aliasy sa nezhodujú - vymazanie témy bolo prerušené",
+                "Vymazanie témy zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "add": {
+        "title": "Pridať tému",
+        "move_to_theme_list": "Presť na všetky témy",
+        "accepted_file": "Prijateľný súbor",
+        "info": [
+            "Téma bola úspešne nahraná",
+            "Téma už existuje",
+            "Téma neobsahuje konfiguračný súbor",
+            "Téma nemá správne usporiadanie súborov",
+            "Pri nahrávaní témy nastala chyb, opakujte akciu"
+        ]
+    },
+    "uploader": {
+        "filename": "Názov súboru",
+        "browse": "Prehľadávať",
+        "upload": "Nahrať",
+        "uploaded_files": "Nahrané súbory",
+        "drag_files_here": "Presuňte sem súbory"
+    },
+    "max_file_size_to_upload": "Maximálna veľkosť súboru na nahratie"
+}

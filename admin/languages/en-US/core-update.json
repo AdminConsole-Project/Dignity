@@ -1,0 +1,13 @@
+{
+    "update": {
+        "title": "Updates",
+        "your_version": "Your version"
+    },
+    "uploader": {
+        "filename": "Filename",
+        "browse": "Browse",
+        "uploaded_files": "Uploaded files",
+        "drag_files_here": "Drag files here"
+    },
+    "max_file_size_to_upload": "Max file size to upload"
+}

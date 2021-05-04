@@ -1,0 +1,13 @@
+{
+    "update": {
+        "title": "Aktualizácie",
+        "your_version": "Vaša verzia"
+    },
+    "uploader": {
+        "filename": "Názov súboru",
+        "browse": "Prehľadávať",
+        "uploaded_files": "Nahrané súbory",
+        "drag_files_here": "Presuňte sem súbory"
+    },
+    "max_file_size_to_upload": "Maximálna veľkosť súboru na nahratie"
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{$siteDetails->language}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$title}</title>
+    <meta name="description" content="{$siteDetails->description}" n:if="$siteDetails->description">
+    <meta name="author" content="{$siteDetails->author}" n:if="$siteDetails->showAuthor">
+    <meta name="robots" content="{$siteDetails->robots}" n:if="$siteDetails->robots !== 'index, follow'">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/fonts/font-awesome.min.css">
+</head>
+<body>
+    {include primary from 'navigation.latte'}
+    <main class="masthead container">
+        <section>
+            {include content}
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">{$siteDetails->sitename}&nbsp;©&nbsp;{='now'|date:'Y'}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{$basePath}/{$siteDetails->theme}/js/jquery.min.js" type="application/javascript"></script>
+    <script src="{$basePath}/{$siteDetails->theme}/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="{$basePath}/{$siteDetails->theme}/js/agency.js" type="application/javascript"></script>
+</body>
+</html>

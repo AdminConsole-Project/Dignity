@@ -1,0 +1,665 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+    <a href="navigation.php?view=add" class="btn btn-outline-primary rounded-btn-custom mb-3" n:attr="title => $lang['list']['add']">
+        <i class="fas fa-plus"></i>
+    </a>
+    <div id="ac-visibility-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['public']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['private']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['visibility']['set'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+   </div>
+    <div id="ac-delete-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['delete'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['delete'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-1">{$lang['list']['list']['visibility']}</th>
+                    <th>{$lang['list']['list']['title']}</th>
+                    <th class="w-10">{$lang['list']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$navigations" n:inner-foreach="$navigations as $row">
+                <tr>
+                    {if $row['status'] == '1'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-success size-15" data-toggle="category-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    {elseif $row['status'] == '0'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-danger size-15" data-toggle="category-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </td>
+                    {/if}
+                    <td>
+                        <a n:attr="href => 'navigation.php?view=edit&id='.$row['ID']">{$row['name']}</a>
+                        <div>({$lang['list']['list']['alias']}:&nbsp;{$row['alias']})</div>
+                    </td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" class="text-danger" data-action="delete" n:attr="aria-value => $row['ID'],aria-alias => $row['alias'],aria-text => $lang['list']['list']['repeate_text']">{$lang['list']['list']['delete']}<i class="fas fa-trash ml-2"></i></a>
+                    </td>
+                    <td class="align-middle text-right">{$row['ID']}</td>
+                </tr>
+            </tbody>
+            {if empty($navigations)}
+                <tbody>
+                    <tr>
+                        <td class="text-center" colspan="5">{$lang['list']['list']['no_navigations_created']}</td>
+                    </tr>
+                </tbody>
+            {/if}
+        </table>
+    </div>
+{/define}
+{define edit}
+    <div>
+        <h3>{$lang['edit']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="navigation.php">←{$lang['edit']['move_to_navigation_list']}</a>
+    </div>
+    <div id="navigation-panel">
+        <div class="row mb-3">
+            <div class="col-md-5 col-lg-4 col-xl-3">
+                <div>
+                    <button class="btn btn-block btn-primary" type="submit" form="ac-form"><i class="fas fa-save mr-2"></i>{$lang['edit']['save_changes']}</button>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-8 col-xl-9">
+                <div id="ac-info">
+                    <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                    <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                    <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-lg-4 col-xl-3">
+                <div class="editor-sidebar mb-3">
+                    <p class="editor-text-600">{$lang['edit']['properties']['properties']}</p>
+                    <hr class="editor-hr">
+                    <div class="mt-3 mb-3">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <p class="editor-text">{$lang['edit']['properties']['visibility']['visibility']}:</p>
+                            </div>
+                            <div class="col text-right">
+                                <a href="javascript:void(0);" class="editor-text" v-on:click="properties_visibility_show = !properties_visibility_show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                            </div>
+                        </div>
+                        <select class="form-control mt-3 mb-3" name="visibility" form="ac-form" v-show="!properties_visibility_show">
+                            {if $navigation_data['status'] == 1}
+                                <option value="1" selected>{$lang['edit']['properties']['visibility']['public']}</option>
+                                <option value="0">{$lang['edit']['properties']['visibility']['private']}</option>
+                            {elseif $navigation_data['status'] == 0}
+                                <option value="1">{$lang['edit']['properties']['visibility']['public']}</option>
+                                <option value="0" selected>{$lang['edit']['properties']['visibility']['private']}</option>
+                            {/if}
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <p class="editor-text">{$lang['edit']['properties']['position']['position']}:</p>
+                            </div>
+                            <div class="col text-right">
+                                <a href="javascript:void(0);" class="editor-text" v-on:click="properties_position_show = !properties_position_show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                            </div>
+                        </div>
+                        <select class="form-control mt-3" name="position" form="ac-form" v-show="!properties_position_show">
+                            <option value="primary" selected>{$lang['edit']['properties']['position']['primary']}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="editor-sidebar">
+                    <p class="editor-text-600">{$lang['edit']['items']['items']}</p>
+                    <hr class="editor-hr">
+                    <div>
+                        <div class="mt-3">
+                            <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['add']['items']['pages']}</button>
+                            <div class="ac-collapse">
+                                <div class="p-1">
+                                    <select class="form-control mb-3" n:inner-foreach="$page_list as $row" v-model="page_add">
+                                        {if $row['main_page'] === '1'}
+                                            <option n:attr="value =>$row['ID']">-&nbsp;{$row['title']}&nbsp;-</option>
+                                        {else}
+                                            <option n:attr="value =>$row['ID']">{$row['title']}</option>
+                                        {/if}
+                                    </select>
+                                    <div class="text-right mb-3">
+                                        <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_page()">{$lang['edit']['items']['add']}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="editor-hr">
+                        <div class="mt-3">
+                            <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['edit']['items']['articles']}</button>
+                            <div class="ac-collapse">
+                                <div class="p-1">
+                                    <select class="form-control mb-3" n:inner-foreach="$article_list as $row" v-model="article_add">
+                                        <option n:attr="value =>$row['ID']">{$row['title']}</option>
+                                    </select>
+                                    <div class="text-right mb-3">
+                                        <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_article()">{$lang['edit']['items']['add']}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="editor-hr">
+                        <div class="mt-3">
+                            <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['edit']['items']['categories']}</button>
+                            <div class="ac-collapse">
+                                <div class="p-1">
+                                    <select class="form-control mb-3" v-model="category_add">
+                                        {category_list_option()}
+                                    </select>
+                                    <div class="text-right mb-3">
+                                        <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_category()">{$lang['edit']['items']['add']}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="editor-hr">
+                        <div class="mt-3">
+                            <button class="btn btn-block btn-outline-dark d-block" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['edit']['items']['own_link']}</button>
+                            <div class="ac-collapse">
+                                <div class="p-1">
+                                    <div class="form-group mt-3">
+                                        <label>{$lang['edit']['items']['address']}</label>
+                                        <input class="form-control" type="url" v-model="url_add_address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{$lang['edit']['items']['text']}</label>
+                                        <input class="form-control" type="text" v-model="url_add_text">
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_url()">{$lang['edit']['items']['add']}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-8 col-xl-9">
+                <form id="ac-form" action="navigation.php?action=edit" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="id" required n:attr="value => $navigation_data['ID']">
+                        <input type="text" class="form-control form-control-lg" name="name" required n:attr="placeholder => $lang['edit']['name'], value => $navigation_data['name']">
+                    </div>
+                    <div id="navigation-add-content" class="form-group border bg-white p-3">
+                        <h4 class="m-0">{$lang['edit']['structure']['structure']}</h4>
+                        <div class="border mt-3 p-3" v-for="(row, index) in menu">
+                            <h5>{{ row.text }}</h5>
+                            <input type="hidden" name="presenter[]" :value="row.presenter">
+                            <input type="hidden" name="action[]" :value="row.action">
+                            <input type="hidden" name="identificator[]" :value="row.id">
+                            <input type="hidden" name="original[]" :value="row.original" v-if="row.original">
+
+                            <input type="hidden" name="url[]" :value="row.url" v-if="row.presenter">
+                            <div>
+                                <label>{$lang['edit']['structure']['navigation_tag']}</label>
+                                <input class="form-control" type="text" name="text[]" required :value="row.text" v-model="row.text">
+                                <small v-if="row.presenter === 'Page'">{$lang['edit']['structure']['page']['page']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                <small v-else-if="row.presenter === 'Article'">{$lang['edit']['structure']['article']['article']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                <small v-else-if="row.presenter === 'Category'">{$lang['edit']['structure']['category']['category']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                <div v-else>
+                                    <small>{$lang['edit']['structure']['link']['link']}</small>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label>{$lang['edit']['structure']['link']['address']}</label>
+                                        <input class="form-control" type="text" name="url[]" :value="row.url">
+                                    </div>
+                                </div>
+                                <div class="d-flex mt-3">
+                                    <div class="mr-auto">
+                                        <button class="btn btn-sm btn-outline-secondary mb-3 mb-lg-0" type="button" v-on:click="move_item(index, index-1)" :disabled="index === 0"><i class="fas fa-chevron-up mr-2"></i>{$lang['add']['structure']['move']['up']}</button>
+                                        <button class="btn btn-sm btn-outline-secondary" type="button" v-on:click="move_item(index, index+1)" :disabled="index === (menu.length-1)"><i class="fas fa-chevron-down mr-2"></i>{$lang['add']['structure']['move']['down']}</button>
+                                    </div>
+                                    <div class="text-right mt-auto">
+                                        <button class="btn btn-sm btn-danger" type="button" v-on:click="delete_item(index)">{$lang['edit']['structure']['delete']}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <script>
+        Array.prototype.move = function(from, to){
+            this.splice(to, 0, this.splice(from, 1)[0]);
+            return this;
+        };
+
+        {var $navigation_structure = $navigation_data['structure']}
+        const navigation_structure = {$navigation_structure}
+
+        new Vue({
+                el: '#navigation-panel',
+                data: {
+                    properties_visibility_show: true,
+                    properties_position_show: true,
+
+                    page_add: null,
+                    article_add: null,
+                    category_add: null,
+
+                    url_add_address: null,
+                    url_add_text: null,
+
+                    menu: [],
+
+                    data: null,
+                },
+                methods: {
+                    async add_page(){
+
+                        if (this.page_add !== null){
+
+                            await this.get_name('page', this.page_add);
+
+                            this.menu.push({
+                                presenter: 'Page',
+                                action: 'default',
+                                id: this.page_add,
+                                original: this.data,
+                                text: this.data,
+                                url: null
+                            });
+                        }
+                    },
+                    async add_article(){
+
+                        if (this.article_add !== null){
+
+                            await this.get_name('article', this.article_add);
+
+                            this.menu.push({
+                                presenter: 'Article',
+                                action: 'default',
+                                id: this.article_add,
+                                original: this.data,
+                                text: this.data,
+                                url: null
+                            });
+                        }
+                    },
+                    async add_category(){
+
+                        if (this.category_add !== null){
+
+                            await this.get_name('category', this.category_add);
+
+                            this.menu.push({
+                                presenter: 'Category',
+                                action: 'default',
+                                id: this.category_add,
+                                original: this.data,
+                                text: this.data,
+                                url: null
+                            });
+                        }
+                    },
+                    add_url(){
+
+                        if (this.url_add_address !== null && this.url_add_text !== null){
+                            this.menu.push({
+                                presenter: null,
+                                action: null,
+                                id: null,
+                                original: null,
+                                text: this.url_add_text,
+                                url: this.url_add_address
+                            });
+                        }
+
+                        this.url_add_address = null;
+                        this.url_add_text = null;
+                    },
+                    delete_item(index){
+
+                        this.menu.splice(index, 1)
+                    },
+                    move_item(from, to){
+
+                        this.menu.move(from, to);
+
+                        blur();
+                    },
+                    async get_name(type, id){
+
+                        let form_data = new FormData();
+                        form_data.append('id', id);
+                        form_data.append('type', type);
+
+                        await fetch('navigation.php?action=get-name', {
+
+                            method: 'POST',
+                            mode: 'same-origin',
+                            cache: 'no-cache',
+                            body: form_data
+
+                        }).then(response => {
+
+                            return response.text();
+
+                        }).then(data => {
+
+                            this.data = data;
+                        });
+                    }
+                },
+                mounted: function(){
+
+                    this.menu = JSON.parse(navigation_structure);
+                }
+            })
+    </script>
+</div>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="navigation.php">←{$lang['add']['move_to_navigation_list']}</a>
+    </div>
+    <div id="navigation-panel">
+            <div class="row mb-3">
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div>
+                        <button class="btn btn-block btn-primary" type="submit" form="ac-form">{$lang['add']['create']}</button>
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="ac-info">
+                        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div class="editor-sidebar mb-3">
+                        <p class="editor-text-600">{$lang['add']['properties']['properties']}</p>
+                        <hr class="editor-hr">
+                        <div class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['add']['properties']['visibility']['visibility']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="properties_visibility_show = !properties_visibility_show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="visibility" form="ac-form" v-show="!properties_visibility_show">
+                                <option value="1" selected>{$lang['add']['properties']['visibility']['public']}</option>
+                                <option value="0">{$lang['add']['properties']['visibility']['private']}</option>
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['add']['properties']['position']['position']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="properties_position_show = !properties_position_show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3" name="position" form="ac-form" v-show="!properties_position_show">
+                                <option value="primary" selected>{$lang['add']['properties']['position']['primary']}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="editor-sidebar">
+                        <p class="editor-text-600">{$lang['add']['items']['items']}</p>
+                        <hr class="editor-hr">
+                        <div>
+                            <div class="mt-3">
+                                <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['add']['items']['pages']}</button>
+                                <div class="ac-collapse">
+                                    <div class="p-1">
+                                        <select class="form-control mb-3" n:inner-foreach="$page_list as $row" v-model="page_add">
+                                            {if $row['main_page'] === '1'}
+                                                <option n:attr="value =>$row['ID']">-&nbsp;{$row['title']}&nbsp;-</option>
+                                            {else}
+                                                <option n:attr="value =>$row['ID']">{$row['title']}</option>
+                                            {/if}
+                                        </select>
+                                        <div class="text-right mb-3">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_page()">{$lang['add']['items']['add']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="editor-hr">
+                            <div class="mt-3">
+                                <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['add']['items']['articles']}</button>
+                                <div class="ac-collapse">
+                                    <div class="p-1">
+                                        <select class="form-control mb-3" n:inner-foreach="$article_list as $row" v-model="article_add">
+                                            <option n:attr="value =>$row['ID']">{$row['title']}</option>
+                                        </select>
+                                        <div class="text-right mb-3">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_article()">{$lang['add']['items']['add']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="editor-hr">
+                            <div class="mt-3">
+                                <button class="btn btn-block btn-outline-dark mb-3" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['add']['items']['categories']}</button>
+                                <div class="ac-collapse">
+                                    <div class="p-1">
+                                        <select class="form-control mb-3" v-model="category_add">
+                                            {category_list_option()}
+                                        </select>
+                                        <div class="text-right mb-3">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_category()">{$lang['add']['items']['add']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="editor-hr">
+                            <div class="mt-3">
+                                <button class="btn btn-block btn-outline-dark d-block" type="button" data-toggle="ac-collapse" aria-expanded="false">{$lang['add']['items']['own_link']}</button>
+                                <div class="ac-collapse">
+                                    <div class="p-1">
+                                        <div class="form-group mt-3">
+                                            <label>{$lang['add']['items']['address']}</label>
+                                            <input class="form-control" type="url" v-model="url_add_address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{$lang['add']['items']['text']}</label>
+                                            <input class="form-control" type="text" v-model="url_add_text">
+                                        </div>
+                                        <div class="text-right">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" v-on:click="add_url()">{$lang['add']['items']['add']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <form id="ac-form" action="navigation.php?action=add" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" name="name" required n:attr="placeholder => $lang['add']['name']">
+                        </div>
+                        <div id="navigation-add-content" class="form-group border bg-white p-3">
+                            <h4 class="m-0">{$lang['add']['structure']['structure']}</h4>
+                            <div class="border mt-3 p-3" v-for="(row, index) in menu">
+                                <h5>{{ row.text }}</h5>
+                                <input type="hidden" name="presenter[]" :value="row.presenter">
+                                <input type="hidden" name="action[]" :value="row.action">
+                                <input type="hidden" name="identificator[]" :value="row.id" v-if="row.id">
+                                <input type="hidden" name="original[]" :value="row.original" v-if="row.original">
+                                <input type="hidden" name="url[]" :value="row.url" v-if="row.presenter">
+                                <div>
+                                    <label>{$lang['add']['structure']['navigation_tag']}</label>
+                                    <input class="form-control" type="text" name="text[]" required :value="row.text" v-model="row.text">
+                                    <small v-if="row.presenter === 'Page'">{$lang['add']['structure']['page']['page']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                    <small v-else-if="row.presenter === 'Article'">{$lang['add']['structure']['article']['article']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                    <small v-else-if="row.presenter === 'Category'">{$lang['add']['structure']['category']['category']}&nbsp;-&nbsp;<strong>{{ row.original }}</strong></small>
+                                    <div v-else>
+                                        <small>{$lang['add']['structure']['link']['link']}</small>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label>{$lang['add']['structure']['link']['address']}</label>
+                                            <input class="form-control" type="text" name="url[]" :value="row.url">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mt-3">
+                                        <div class="mr-auto">
+                                            <button class="btn btn-sm btn-outline-secondary mb-3 mb-lg-0" type="button" v-on:click="move_item(index, index-1)" :disabled="index === 0"><i class="fas fa-chevron-up mr-2"></i>{$lang['add']['structure']['move']['up']}</button>
+                                            <button class="btn btn-sm btn-outline-secondary" type="button" v-on:click="move_item(index, index+1)" :disabled="index === (menu.length-1)"><i class="fas fa-chevron-down mr-2"></i>{$lang['add']['structure']['move']['down']}</button>
+                                        </div>
+                                        <div class="text-right mt-auto">
+                                            <button class="btn btn-sm btn-danger" type="button" v-on:click="delete_item(index)">{$lang['add']['structure']['delete']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <script>
+            Array.prototype.move = function(from, to){
+                this.splice(to, 0, this.splice(from, 1)[0]);
+                return this;
+            };
+
+            new Vue({
+                    el: '#navigation-panel',
+                    data: {
+                        properties_visibility_show: true,
+                        properties_position_show: true,
+
+                        page_add: null,
+                        article_add: null,
+                        category_add: null,
+
+                        url_add_address: null,
+                        url_add_text: null,
+
+                        menu: [],
+
+                        data: null,
+                    },
+                    methods: {
+                        async add_page(){
+
+                            if (this.page_add !== null){
+
+                                await this.get_name('page', this.page_add);
+
+                                this.menu.push({
+                                    presenter: 'Page',
+                                    action: 'default',
+                                    id: this.page_add,
+                                    original: this.data,
+                                    text: this.data,
+                                    url: null
+                                });
+                            }
+                        },
+                        async add_article(){
+
+                            if (this.article_add !== null){
+
+                                await this.get_name('article', this.article_add);
+
+                                this.menu.push({
+                                    presenter: 'Article',
+                                    action: 'default',
+                                    id: this.article_add,
+                                    original: this.data,
+                                    text: this.data,
+                                    url: null
+                                });
+                            }
+                        },
+                        async add_category(){
+
+                            if (this.category_add !== null){
+
+                                await this.get_name('category', this.category_add);
+
+                                this.menu.push({
+                                    presenter: 'Category',
+                                    action: 'default',
+                                    id: this.category_add,
+                                    original: this.data,
+                                    text: this.data,
+                                    url: null
+                                });
+                            }
+                        },
+                        add_url(){
+                            if (this.url_add_address !== null && this.url_add_text !== null){
+                                this.menu.push({
+                                    presenter: null,
+                                    action: null,
+                                    id: null,
+                                    originial: null,
+                                    text: this.url_add_text,
+                                    url: this.url_add_address
+                                });
+                            }
+
+                            this.url_add_address = null;
+                            this.url_add_text = null;
+                        },
+                        delete_item(index){
+
+                            this.menu.splice(index, 1)
+                        },
+                        move_item(from, to){
+
+                            this.menu.move(from, to);
+
+                            blur();
+                        },
+                        async get_name(type, id){
+
+                            let form_data = new FormData();
+                            form_data.append('id', id);
+                            form_data.append('type', type);
+
+                            await fetch('navigation.php?action=get-name', {
+
+                                method: 'POST',
+                                mode: 'same-origin',
+                                cache: 'no-cache',
+                                body: form_data
+
+                            }).then(response => {
+
+                                return response.text();
+
+                            }).then(data => {
+
+                                this.data = data;
+                            });
+                        }
+                    }
+                })
+        </script>
+    </div>
+{/define}

@@ -1,0 +1,23 @@
+{block primary}
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" n:href="Homepage:default">{$siteDetails->sitename}</a>
+            <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto text-uppercase">
+                    {foreach $navigation as $row}
+                        {ifset $row->presenter, $row->action, $row->id}
+                        <li class="nav-item">
+                            <a class="nav-link" n:href="$row->presenter.':'.$row->action id:$row->id">{$row->text}</a>
+                        </li>
+                        {else}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{$row->url}">{$row->text}</a>
+                            </li>
+                        {/ifset}
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{/block}

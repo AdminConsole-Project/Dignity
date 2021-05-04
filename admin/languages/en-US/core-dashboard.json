@@ -1,0 +1,16 @@
+{
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome"
+    },
+    "cache": {
+        "title": "Cache",
+        "clear": "Clear cache",
+        "what_it_is": "Cache is a temporary storage. The first time you visit a website, the data is cached. On the second visit, the page loads faster thanks to the saved data",
+        "what_clear_do": "By clearing cache you will load new content. For example when you change theme changes could be show after clearing cache",
+        "info": [
+            "Cache was successfully cleared",
+            "Cache cleaning failed, retry process"
+        ]
+    }
+}

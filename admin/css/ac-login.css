@@ -1,0 +1,131 @@
+/**
+ * @author    Jakub Habaj
+ * @copyright 2020-2021 Jakub Habaj
+ * @license   GNU General Public License version 3; see LICENSE.txt
+ */
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.ac-login {
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (orientation:landscape) and (max-width: 576px) {
+	.ac-login {
+        display: unset;
+    }
+}
+
+.ac-logo {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 0;
+}
+
+.ac-logo img {
+    height: 100%;
+}
+
+#ac-login-info {
+    margin-top: 16px;
+}
+
+.ac-login-form {
+    padding: 16px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.33);
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 450px;
+    margin: 0 auto;
+}
+
+/*@media screen and (orientation:landscape) and (max-width: 992px) {
+
+	.ac-login {
+        height: auto;
+    }
+}*/
+
+#ac-pwd-input, #ac-pwd-con{
+    position: relative;
+}
+
+#ac-pwd-input {
+    padding-right: 50px;
+}
+
+#ac-pwd-button{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    min-width: 40px;
+    border-radius: 0;
+}
+
+#ac-pwd-button:focus, #ac-pwd-button:active{
+    box-shadow: none!important;
+}
+
+.ac-password-show i{
+    color: #006fc0;
+}
+
+.ac-password-show:hover i{
+    color: #00599a;
+}
+
+.ac-password-show:focus i, .ac-password-show:active i{
+    border-color: #006fc0;
+}
+
+.ac-form .custom-control-label{
+    color: #000;
+}
+
+.ac-login-add a {
+    color: #000;
+}
+
+.ac-login-add a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.spinner-border {
+    width: 80px;
+    height: 80px;
+    border-width: 8px;
+}
+
+.ac-login-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hide {
+    display: none;
+}

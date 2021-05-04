@@ -1,0 +1,108 @@
+{
+    "langCode": "sk-SK",
+    "title": "Inštalácia",
+    "sidebar": {
+        "languageChoose": "Výber jazyka",
+        "systemCompatibility": "Kompatibilita systému",
+        "mainConfiguration": "Hlavná konfigurácia",
+        "databaseConfiguration": "Konfigurácia databázy",
+        "overview": "Prehľad"
+    },
+    "step": {
+        "back": "Späť",
+        "continue": "Pokračovať",
+        "install": "Inštalovať",
+        "languageConfiguration": {
+            "languageConfiguration": "Výber jazyka",
+            "availableLanguages": "Dostupné jazyky"
+        },
+        "systemCompatibility": {
+            "systemCompatibility": "Kompatibilita systému",
+            "webServer": "Webový server",
+            "phpVersion": "Verzia PHP",
+            "extensions": {
+                "phpExtensions": "Rozšírenia PHP",
+                "pdo": "PDO",
+                "pdoMySQL": "PDO MySQL",
+                "json": "JSON",
+                "zip": "ZIP",
+                "fileinfo": "Fileinfo",
+                "mbstring": "Mbstring"
+            }
+        },
+        "mainConfiguration": {
+            "mainConfiguration": "Hlavná konfigurácia",
+            "sitename": "Názov stránky",
+            "siteDescription": "Popis stránky",
+            "siteDescriptionInfo": [
+                "Popis stránky je celkový popis Vašej webovej stránky.",
+                "Používajú ho vyhľadávacie nástroje na účely SEO."
+            ],
+            "username": "Použivateľské meno",
+            "userEmail": "Použivateský e-mail",
+            "password": "Heslo",
+            "repeatePassword": "Zopakujte heslo",
+            "passwordDefined": "Heslo bolo Vami definované",
+            "passwordForUpdate": "Pre zmenu hesla ho napíšte znova",
+            "timezone": "Časové pásmo",
+            "browserTimezone": "Časové pásmo prehliadača",
+            "useBrowserTimezone": "Použiť časové pásmo prehliadača",
+            "browserTimezoneInfo": "Ak zaškrtnete, vyššie uvedená možnosť bude ignorovaná.",
+            "error": [
+                "E-mail nemá správny tvar",
+                "Hesla sa nezhodujú"
+            ]
+        },
+        "databaseConfiguration": {
+            "databaseConfiguration": "Konfigurácia databázy",
+            "dbType": "Typ databázy",
+            "dbHost": "Hostiteľ databázy",
+            "dbPortInfo": [
+                "Predvolený port je 3306.",
+                "Ak potrebuje použiť iný port, doplňte číslo portu na konciec adresy hostiteľa.",
+                "Napríklad localhost:5432."
+            ],
+            "dbName": "Meno databázy",
+            "dbUsername": "Použivateľské meno",
+            "dbPassword": "Heslo",
+            "dbPrefix": "Predpona tabuliek",
+            "dbPrefixInfo": [
+                "Prepona tabuľky zabezpečuje to aby so mohli mať v jednej databáze viacero inštalácií.",
+                "Minimálne dva a maximálne päť znakov.",
+                "Len malé písmena bez diakritiky a čísla.",
+                "Musí končiť podtržníkom."
+            ],
+            "testConnection": "Otestovať pripojenie k databáze",
+            "test": "Otestovať",
+            "dbTest": [
+                "Pripojenie bolo úspešné",
+                "Pripojenie zlyhalo"
+            ],
+            "error": [
+                "Pripojenie k databáze zlyhalo"
+            ]
+        },
+        "overview": {
+            "overview": "Prehľad inštalácie",
+            "fulfilled": "Splnené",
+            "unfulfilled": "Nesplnené",
+            "step": {
+                "languageChoose": "Výber jazyka",
+                "systemCompatibility": "Kompatibilita systému",
+                "mainConfiguration": "Hlavná konfigurácia",
+                "databaseConfiguration": "Konfigurácia databázy"
+            },
+            "error": [
+                "Pre úspešnú inštaláciu musia byť všetky kroky splnené"
+            ]
+        },
+        "installation": {
+            "installation": "Inštalácia",
+            "successfulInstallation": "Inštalácia prebehla úspešne",
+            "front": "Presunuť sa na stránku",
+            "administration": "Prihlásiť sa do administrácie",
+            "deleteInstallFolder": "Vymazať inštalačnú zložku",
+            "deleteInstallFolderInfo": "Vymazaním inštalačnej zložky zabezpečuje ochranu Vašej stránky"
+        }
+    }
+}

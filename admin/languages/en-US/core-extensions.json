@@ -1,0 +1,21 @@
+{
+    "languages": {
+        "title": "Languages",
+        "refresh_site": "Refresh site",
+        "list": {
+            "default": "Default",
+            "title": "Title",
+            "title_native": "Title native",
+            "language_code": "Language code",
+            "version": "Version",
+            "update": "Update",
+            "set": "Set as default language?"
+        },
+        "info": {
+            "set": [
+                "Language change was successful",
+                "Language change failed, retry process"
+            ]
+        }
+    }
+}

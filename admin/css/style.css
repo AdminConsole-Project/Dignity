@@ -1,0 +1,167 @@
+/**
+ * @author    Jakub Habaj
+ * @copyright 2020-2021 Jakub Habaj
+ * @license   GNU General Public License version 3; see LICENSE.txt
+ */
+
+
+.ac-collapse {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.ac-collapsing {
+    transition: max-height 0.35s ease;
+}
+
+.ac-text {
+    font-family: arial;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.ac-relogin {
+    overflow-y: auto;
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.ac-relogin-logo {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 0;
+}
+
+.ac-relogin-logo img {
+    height: 100%;
+}
+
+.ac-relogin-form {
+    padding: 16px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.33);
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 450px;
+    margin: 16px auto;
+}
+
+.ac-relogin-form.filter {
+    filter: brightness(0.2);
+}
+
+#ac-relogin-pwd-input, #ac-relogin-pwd-con{
+    position: relative;
+}
+
+#ac-relogin-pwd-input {
+    padding-right: 50px;
+}
+
+#ac-relogin-pwd-button{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    min-width: 40px;
+    border-radius: 0;
+}
+
+#ac-relogin-pwd-button:focus, #ac-relogin-pwd-button:active{
+    box-shadow: none!important;
+}
+
+.ac-password-show i{
+    color: #006fc0;
+}
+
+.ac-password-show:hover i{
+    color: #00599a;
+}
+
+.ac-password-show:focus i, .ac-password-show:active i{
+    border-color: #006fc0;
+}
+
+.ac-relogin-overlay .spinner-border {
+    width: 80px;
+    height: 80px;
+    border-width: 8px;
+}
+
+.ac-relogin-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ac-relogin-disabled {
+    pointer-events: none!important;
+}
+
+.hide {
+    display: none!important;
+}
+
+.media-btn {
+    padding: 7px 12px!important;
+    border-radius: 50px!important;
+    border-width: 2px!important;
+}
+
+.rounded-btn-custom {
+    padding: 7px 12px!important;
+    border-radius: 50px!important;
+    border-width: 2px!important;
+}
+
+.w-1 {
+    width: 1%;
+}
+
+.w-5 {
+    width: 5%;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.size-15 {
+    font-size: 1.5rem;
+}
+
+#navigation-add-content {
+    border-color: #ced4da!important;
+}
+
+#navigation-add-content .border{
+    border-color: #ced4da!important;
+}

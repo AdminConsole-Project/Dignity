@@ -1,0 +1,27 @@
+http:
+	headers:
+		X-Powered-By: Dignity by AdminConsole Project
+
+application:
+
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+
+services:
+	- App\Router\RouterFactory(%db_prefix%)::createRouter()
+	- App\Presenters\Error4xxPresenter(%db_prefix%)
+	- App\Presenters\HomepagePresenter(%db_prefix%)
+	- App\Presenters\PagePresenter(%db_prefix%)
+	- App\Presenters\ArticlePresenter(%db_prefix%)
+	- App\Presenters\CategoryPresenter(%db_prefix%)
+	- App\Model\SiteManager(%db_prefix%)
+	- App\Model\NavigationManager(%db_prefix%)
+	- App\Model\ArticleManager(%db_prefix%)
+	- App\Model\CategoryManager(%db_prefix%)

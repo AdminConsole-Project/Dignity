@@ -1,0 +1,97 @@
+{foreach $settings_data['site_timezones']["general"] as $row => $val}
+    {if $settings_data['timezone'] === $row}
+        <option n:attr="value => $row" selected>{$val}</option>
+    {else}
+        <option n:attr="value => $row">{$val}</option>
+    {/if}
+{/foreach}
+<optgroup label="Africa">
+    {foreach $settings_data['site_timezones']["Africa"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="America">
+    {foreach $settings_data['site_timezones']["America"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Antarctica">
+    {foreach $settings_data['site_timezones']["Antarctica"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Arctic">
+    {foreach $settings_data['site_timezones']["Arctic"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Asia">
+    {foreach $settings_data['site_timezones']["Asia"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Atlantic">
+    {foreach $settings_data['site_timezones']["Atlantic"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Australia">
+    {foreach $settings_data['site_timezones']["Australia"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Europe">
+    {foreach $settings_data['site_timezones']["Europe"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Indian">
+    {foreach $settings_data['site_timezones']["Indian"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>
+<optgroup label="Pacific">
+    {foreach $settings_data['site_timezones']["Pacific"] as $row => $val}
+        {if $settings_data['timezone'] === $row}
+            <option n:attr="value => $row" selected>{$val}</option>
+        {else}
+            <option n:attr="value => $row">{$val}</option>
+        {/if}
+    {/foreach}
+</optgroup>

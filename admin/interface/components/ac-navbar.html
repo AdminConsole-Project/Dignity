@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light navbar-expand-lg" id="ac-navbar">
+    <div class="container-fluid">
+        <button  id="navbar-sidebar-collapse" class="btn navbar-sidebar-collapse-icon" type="button">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <a class="navbar-brand" href="https://www.admin-console.org" target="_blank" rel="noopener noreferrer">
+            <img id="ac-navbar-logo" src="img/logo-ow.svg" alt="AdminConsole Project" draggable="false">
+        </a>
+        <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li role="presentation" class="nav-item">
+                    <a class="nav-link" href="../" target="_blank">{$lang_interface['navbar']['my_website']}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
+                        {if !empty($user_info['firstname']) && !empty($user_info['lastname'])}
+                        <span>{$user_info['firstname']}&nbsp;{$user_info['lastname']}&nbsp;</span>
+                        {else}
+                        <span>{$user_info['username']}&nbsp;</span>
+                        {/if}
+                    </a>
+                    <div role="menu" class="dropdown-menu dropdown-menu-right">
+                        <a role="presentation" class="dropdown-item" href="user.php?view=profile">{$lang_interface['navbar']['account']['profile']}<i class="fas fa-user-circle"></i></a>
+                        <a role="presentation" class="dropdown-item" href="settings.php">{$lang_interface['navbar']['account']['settings']}<i class="fas fa-cogs"></i></a>
+                        <a role="presentation" class="dropdown-item" href="login.php?action=logout">{$lang_interface['navbar']['account']['logout']}<i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </li>
+            </ul>
+    </div>
+    </div>
+</nav>

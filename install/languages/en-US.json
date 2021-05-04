@@ -1,0 +1,108 @@
+{
+    "langCode": "en-US",
+    "title": "Installation",
+    "sidebar": {
+        "languageChoose": "Language choose",
+        "systemCompatibility": "System compatibility",
+        "mainConfiguration": "Main configuration",
+        "databaseConfiguration": "Database configuration",
+        "overview": "Overview"
+    },
+    "step": {
+        "back": "Back",
+        "continue": "Continue",
+        "install": "Install",
+        "languageConfiguration": {
+            "languageConfiguration": "Language choose",
+            "availableLanguages": "Available languages"
+        },
+        "systemCompatibility": {
+            "systemCompatibility": "System compatibility",
+            "webServer": "Web server",
+            "phpVersion": "PHP version",
+            "extensions": {
+                "phpExtensions": "PHP extensions",
+                "pdo": "PDO",
+                "pdoMySQL": "PDO MySQL",
+                "json": "JSON",
+                "zip": "ZIP",
+                "fileinfo": "Fileinfo",
+                "mbstring": "Mbstring"
+            }
+        },
+        "mainConfiguration": {
+            "mainConfiguration": "Main configuration",
+            "sitename": "Sitename",
+            "siteDescription": "Site description",
+            "siteDescriptionInfo": [
+                "Site description is overall description of your website.",
+                "It is used by search engines for SEO purposes."
+            ],
+            "username": "Username",
+            "userEmail": "User e-mail",
+            "password": "Password",
+            "repeatePassword": "Repeate password",
+            "passwordDefined": "Password was defined by you",
+            "passwordForUpdate": "For password update write it again",
+            "timezone": "Timezone",
+            "browserTimezone": "Browser timezone",
+            "useBrowserTimezone": "Use browser timezone",
+            "browserTimezoneInfo": "If you check, the above option will be ignored",
+            "error": [
+                "E-mail has wrong pattern",
+                "Passwords do not match"
+            ]
+        },
+        "databaseConfiguration": {
+            "databaseConfiguration": "Database configuration",
+            "dbType": "Database type",
+            "dbHost": "Database host",
+            "dbPortInfo": [
+                "The default port is 3306.",
+                "If you need to use different port, add the port number at the end of host.",
+                "For example localhost:5432."
+            ],
+            "dbName": "Database name",
+            "dbUsername": "Username",
+            "dbPassword": "Password",
+            "dbPrefix": "Tables prefix",
+            "dbPrefixInfo": [
+                "The table prefix ensures that you can have multiple installations in one database.",
+                "A minimum of two and a maximum of five characters.",
+                "Only lowercase letters without accents and numbers.",
+                "It must end with an underscore."
+            ],
+            "testConnection": "Test database connection",
+            "test": "Test",
+            "dbTest": [
+                "Connection was successful",
+                "Connection failed"
+            ],
+            "error": [
+                "Database connection failed"
+            ]
+        },
+        "overview": {
+            "overview": "Installation overview",
+            "fulfilled": "Fulfilled",
+            "unfulfilled": "Unfulfilled",
+            "step": {
+                "languageChoose": "Language choose",
+                "systemCompatibility": "System compatibility",
+                "mainConfiguration": "Main configuration",
+                "databaseConfiguration": "Database configuration"
+            },
+            "error": [
+                "All steps must be completed for a successful installation"
+            ]
+        },
+        "installation": {
+            "installation": "Installation",
+            "successfulInstallation": "Installation was successful",
+            "front": "Move to website",
+            "administration": "Login to administration",
+            "deleteInstallFolder": "Delete installation folder",
+            "deleteInstallFolderInfo": "Deleting the installation folder ensures the protection of your site"
+        }
+    }
+}

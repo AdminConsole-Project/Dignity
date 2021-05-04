@@ -1,0 +1,15 @@
+/**
+ * @author    Jakub Habaj
+ * @copyright 2020-2021 Jakub Habaj
+ * @license   GNU General Public License version 3; see LICENSE.txt
+ */
+
+
+main img {
+    width: 100%;
+    height: auto;
+}
+
+#maintenance {
+    text-align: center;
+}

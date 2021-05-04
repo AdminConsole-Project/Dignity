@@ -1,0 +1,51 @@
+{
+    "list": {
+        "title": "Themes",
+        "add": "Add theme",
+        "list": {
+            "title": "Title",
+            "name": "Name",
+            "description": "Description",
+            "main_theme": "Main theme",
+            "actions": "Actions",
+            "set_main_theme": "Set as main theme",
+            "delete": "Delete",
+            "are_you_sure": "Are you sure that you want to delete theme?",
+            "repeate_text": "Repeate text Zopakujte text",
+            "set_as_main_theme": "Set as main theme?"
+        },
+        "info": {
+            "main_theme": [
+                "Theme was set as main",
+                "Setting as main theme was stopped",
+                "Setting as main theme failed, retry process"
+            ],
+            "delete": [
+                "Theme was successfully deleted",
+                "Theme deletion was stopped",
+                "Aliases do not match - deletion of theme was stopped",
+                "Deletion of theme failed, retry process"
+            ]
+        }
+    },
+    "add": {
+        "title": "Add theme",
+        "move_to_theme_list": "Move to theme list",
+        "accepted_file": "Accepted file type",
+        "info": [
+            "Theme was successfully uploaded",
+            "Theme already exist",
+            "Theme does not contain configuration file",
+            "Theme does not have proper file structure",
+            "Error occurred during theme upload, retry process"
+        ]
+    },
+    "uploader": {
+        "filename": "Filename",
+        "browse": "Browse",
+        "upload": "Upload",
+        "uploaded_files": "Uploaded files",
+        "drag_files_here": "Drag files here"
+    },
+    "max_file_size_to_upload": "Max file size to upload"
+}

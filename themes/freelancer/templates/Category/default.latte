@@ -1,0 +1,13 @@
+{block content}
+    <h1>{$name}</h1>
+    <p>{$description}</p>
+    {foreach $articles as $row}
+        <div class="border-top border-primary py-3 mt-3">
+            <h2>
+                <a n:href="Article:default, id: $row->ID" target="_blank">{$row->title}</a>
+            </h2>
+            <strong>{$row->date|date:'d.m.Y'}</strong>
+            <p><strong>Hits:</strong>&nbsp;{$row->hits}</p>
+        </div>
+    {/foreach}
+{/block}

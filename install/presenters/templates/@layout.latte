@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{$lang->langCode}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dignity CMS">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{$lang->title} - Dignity</title>
+
+    <link rel="stylesheet" href="{$basePath}/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="{$basePath}/assets/css/style.css">
+
+    <link rel="shortcut icon" href="{$basePath}/assets/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="{$basePath}/assets/fonts/FontAwesome/fontawesome-all.min.css">
+
+    <script src="{$basePath}/assets/js/vue.min.js"></script>
+    <script src="{$basePath}/assets/js/axios.min.js"></script>
+</head>
+<body>
+	<div class="ac-installation">
+        <div class="ac-installation-form">
+			<div class="row">
+				<div class="col-md-6">
+					<a href="https://www.admin-console.org/" target="_blank" class="ac-logo" rel="noopener noreferrer">
+						<img src="{$basePath}/assets/img/logo-ob.svg" alt="AdminConsole Project Logo" draggable="false">
+						<h1 class="m-0 ml-3">Dignity</h1>
+					</a>
+				</div>
+				<div class="col-md-6 d-flex align-items-center justify-content-md-end">
+					<h2 class="m-0">{$lang->title}</h2>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-4 step-selector">
+					{include 'stepSelector.latte'}
+
+				</div>
+				<div class="col-md-8">
+					{include content}
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 text-left mb-3 mb-sm-0">
+					{include 'stepBack.latte'}
+				</div>
+				<div class="col-md-4 col-sm-4"></div>
+				<div class="col-md-4 col-sm-4 text-md-right text-center">
+					{include 'stepContinue.latte'}
+				</div>
+			</div>
+        </div>
+    </div>
+	<script src="{$basePath}/assets/js/alert-dismiss.js"></script>
+</body>
+</html>

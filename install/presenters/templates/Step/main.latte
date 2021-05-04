@@ -1,0 +1,147 @@
+{block content}
+	<div id="ac-info">
+		<div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang->step->mainConfiguration->error[0]}</div>
+		<div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang->step->mainConfiguration->error[1]}</div>
+	</div>
+	<h3>{$lang->step->mainConfiguration->mainConfiguration}</h3>
+	<form id="ac-form" action="{link Process:main, lang: $lang->langCode}" method="post" @submit="sendForm">
+		<div class="ac-form row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->sitename}&nbsp;<span class="text-danger">*</span></label>
+					<input type="text" class="form-control" name="sitename" required n:attr="value: $stepData?->sitename">
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->siteDescription}</label>
+					<textarea type="text" class="form-control" name="siteDescription" rows="3">{$stepData?->siteDescription}</textarea>
+					<div class="text-right">
+						<a href="javascript:void(0);" v-on:click="siteDescription = !siteDescription">
+							<i class="fas fa-question-circle"></i>
+						</a>
+					</div>
+					<div v-show="siteDescription">
+						<small class="d-block">{$lang->step->mainConfiguration->siteDescriptionInfo[0]}</small>
+						<small class="d-block">{$lang->step->mainConfiguration->siteDescriptionInfo[1]}</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->username}&nbsp;<span class="text-danger">*</span></label>
+					<input type="text" class="form-control" name="username" required n:attr="value: $stepData?->user->username">
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->userEmail}&nbsp;<span class="text-danger">*</span></label>
+					<input type="email" inputmode="email" class="form-control" name="email" required n:attr="value: $stepData?->user->email">
+				</div>
+				<div class="ac-alert simple-ac-alert-primary" role="alert" n:if="$stepData?->user->password">
+				<p class="m-0">{$lang->step->mainConfiguration->passwordDefined}</p>
+				<p class="m-0"><strong>{$lang->step->mainConfiguration->passwordForUpdate}</strong></p></div>
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->password}&nbsp;<span class="text-danger" n:if="!$stepData?->user->password">*</span></label>
+					<input type="hidden" name="savedPassword" n:attr="value: $stepData?->user->password">
+					<div id="ac-pwd-con">
+						<input type="password" id="ac-pwd-input" class="form-control" name="password" n:attr="required: !$stepData?->user->password">
+						<button id="ac-pwd-button" class="btn ac-password-show" type="button" alt="Show">
+							<i id="ac-pwd-icon" class="fas fa-eye"></i>
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->mainConfiguration->repeatePassword}&nbsp;<span class="text-danger" n:if="!$stepData?->user->password">*</span></label>
+					<input type="password" class="form-control" name="passwordRepeated" n:attr="required: !$stepData?->user->password">
+				</div>
+			</div>
+			<div class="col-md-12">
+				<label>{$lang->step->mainConfiguration->timezone}&nbsp;<span class="text-danger">*</span></label>
+				<select class="form-control mb-3" name="timezone">
+					{foreach $timezone as $key => $data}
+						{if $key === 'general'}
+							{foreach $data as $row => $val}
+								{if $stepData?->timezone === $row}
+									<option value="{$row}" selected>{$val}</option>
+								{else}
+									<option value="{$row}">{$val}</option>
+								{/if}
+							{/foreach}
+						{else}
+							<optgroup label="{$key}">
+								{foreach $data as $row => $val}
+									{if $stepData?->timezone === $row}
+										<option value="{$row}" selected>{$val}</option>
+									{else}
+										<option value="{$row}">{$val}</option>
+									{/if}
+								{/foreach}
+							</optgroup>
+						{/if}
+					{/foreach}
+				</select>
+				<p>{$lang->step->mainConfiguration->browserTimezone}: <span class="text-primary">{{ timezone }}</span></p>
+				<input type="hidden" name="browserTimezone" :value="timezone">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="timezone-check" name="useBrowserTimezone" value="true">
+					<label class="custom-control-label" for="timezone-check">{$lang->step->mainConfiguration->useBrowserTimezone}</label>
+				</div>
+				<small>{$lang->step->mainConfiguration->browserTimezoneInfo}</small>
+			</div>
+		</div>
+		<script>
+			new Vue({
+				el: '#ac-form',
+				data: {
+					siteDescription: true,
+					timezone: null,
+					response: null
+				},
+				methods: {
+					async sendForm(e) {
+
+						e.preventDefault();
+
+						await this.send();
+
+						document.getElementById('ac-info').children[0].classList.add("hide");
+						document.getElementById('ac-info').children[1].classList.add("hide");
+
+						if (this.response.status === 'OK'){
+							window.location = this.response.redirectUrl;
+						}else {
+							let data = this.response.message
+
+							Object.keys(this.response.message).forEach(function(key){
+
+								if (data[key] === 'E-mail no pattern'){
+									document.getElementById('ac-info').children[0].classList.remove("hide");
+								}
+
+								if (data[key] === 'Passwords no match'){
+									document.getElementById('ac-info').children[1].classList.remove("hide");
+								}
+							});
+						}
+					},
+					async send(){
+
+						const data = await axios.post(
+							this.$el.getAttribute('action'),
+							new FormData(this.$el)
+						)
+						.then(function (response) {
+
+							return response.data;
+
+						});
+
+						this.response = data;
+					}
+				},
+				mounted: function(){
+
+					this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+				}
+			})
+		</script>
+	</form>
+	<script src="{$basePath}/assets/js/pwd-show.js"></script>
+{/block}

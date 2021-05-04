@@ -1,0 +1,148 @@
+{
+    "list": {
+        "title": "Používatelia",
+        "add": "Pridat použivateľa",
+        "list": {
+            "username": "Použivateľské meno",
+            "name": "Meno",
+            "email": "E-mail",
+            "last_login": "Posledné prihlásenie",
+            "actions": "Akcie",
+            "delete": "Vymazať",
+            "repeate_text": "Zopakujte text"
+        },
+        "info": {
+            "delete": [
+                "Používateľ bol vymazaný",
+                "Vymazanie použivateľa bolo prerušené",
+                "Text sa nezhodujú - vymazanie použivateľa bolo prerušené",
+                "Vymazanie použivateľa zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Upraviť použivateľa",
+        "move_to_user_list": "Presť na všetkých používateľov",
+        "user_informations": {
+            "user_informations": "Použivateľské informácie",
+            "username": {
+                "username": "Použivateľské meno",
+                "username_info": "Použivateľské meno nemôže byť zmenené"
+            },
+            "firstname": "Meno",
+            "lastname": "Priezvisko",
+            "email": {
+                "email": "E-mail",
+                "email_info": [
+                    "Ak zmeníte toto nastavenie, príde Vám na starú e-mailovú adresu potrvdenie",
+                    "Zmena nebude platná až kým ju nepotvrdíte"
+                ]
+            }
+        },
+        "personal_settings": {
+            "personal_settings": "Osobné nastavenia",
+            "language": {
+                "language": "Jazyk",
+                "default": "Predvolený jazyk administrácie"
+            }
+        },
+        "security": {
+            "security": "Bezpečnosť",
+            "password": {
+                "password": "Heslo",
+                "generate_password": "Vygenerovať heslo"
+            }
+        },
+        "save_changes": "Uložiť zmeny",
+        "info": [
+            "Zmeny prebehli úspešne",
+            "Zmeny zlyhali, opakujte proces"
+        ]
+    },
+    "add": {
+        "title": "Pridať používateľa",
+        "move_to_user_list": "Presť na všetkých používateľov",
+        "create": "Vytvoriť",
+        "user_informations": {
+            "user_informations": "Použivateľské informácie",
+            "username": "Použivateľské meno",
+            "firstname": "Meno",
+            "lastname": "Priezvisko",
+            "email": "E-mail"
+        },
+        "personal_settings": {
+            "personal_settings": "Osobné nastavenia",
+            "language": {
+                "language": "Jazyk",
+                "default": "Predvolený jazyk administrácie"
+            }
+        },
+        "security": {
+            "security": "Bezpečnosť",
+            "password": {
+                "password": "Heslo",
+                "generate_password": "Vygenerovať heslo"
+            }
+        },
+        "info": [
+            "Používateľ bol úspešne vytvorený",
+            "Používateľ s rovnakým použivateľským menom už existuje",
+            "Používateľ s rovnakým e-mailom už existuje",
+            "Pridanie použivateľa zlyhalo, opakujte proces"
+        ]
+    },
+    "profile": {
+        "title": "Profil",
+        "user_informations": {
+            "user_informations": "Použivateľské informácie",
+            "username": {
+                "username": "Použivateľské meno",
+                "username_info": "Použivateľské meno nemôže byť zmenené"
+            },
+            "firstname": "Meno",
+            "lastname": "Priezvisko",
+            "email": {
+                "email": "E-mail",
+                "email_info": [
+                    "Ak zmeníte toto nastavenie, príde Vám na starú e-mailovú adresu potrvdenie",
+                    "Zmena nebude platná až kým ju nepotvrdíte"
+                ]
+            }
+        },
+        "personal_settings": {
+            "personal_settings": "Osobné nastavenia",
+            "language": {
+                "language": "Jazyk",
+                "default": "Predvolený jazyk administrácie"
+            }
+        },
+        "security": {
+            "security": "Bezpečnosť",
+            "password": {
+                "password": "Heslo",
+                "change_password": {
+                    "change_password": "Zmeniť heslo",
+                    "old_password": "Staré heslo",
+                    "new_password": "Nové heslo",
+                    "repeate_new_password": "Zopakujte heslo",
+                    "cancel": "Zrušiť"
+                }
+            },
+            "sessions": {
+                "sessions": "Relácie",
+                "logout_from_all_devices": "Odhlásiť sa zo všetkých zariadení",
+                "download_login_history": "Stiahnuť históriu prihlasovania",
+                "active_sessions": [
+                    "Aktívne relácie",
+                    "Ste prihlasený len v tomto prehliadači",
+                    "Máte viacero aktívnych relácií z Vašej IP adresy"
+                ]
+            }
+        },
+        "save_changes": "Uložiť zmeny",
+        "info": [
+            "Zmeny prebehli úspešne",
+            "Zmeny zlyhali, opakujte proces"
+        ]
+    }
+}

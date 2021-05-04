@@ -1,0 +1,15 @@
+{if $settings_data['sitename-title-location'] === 'false'}
+    <option value="false" selected>{$lang['seo']['sitename_title_location']['sitename_title_options']['false']}</option>
+{else}
+    <option value="false">{$lang['seo']['sitename_title_location']['sitename_title_options']['false']}</option>
+{/if}
+{if $settings_data['sitename-title-location'] === 'before'}
+    <option value="before" selected>{$lang['seo']['sitename_title_location']['sitename_title_options']['before']}</option>
+{else}
+    <option value="before">{$lang['seo']['sitename_title_location']['sitename_title_options']['before']}</option>
+{/if}
+{if $settings_data['sitename-title-location'] === 'after'}
+    <option value="after" selected>{$lang['seo']['sitename_title_location']['sitename_title_options']['after']}</option>
+{else}
+    <option value="after">{$lang['seo']['sitename_title_location']['sitename_title_options']['after']}</option>
+{/if}

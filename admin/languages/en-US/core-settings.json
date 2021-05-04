@@ -1,0 +1,72 @@
+{
+    "general": {
+        "title": "General settings",
+        "site": {
+            "sitename": "Sitename",
+            "description": "Site description",
+            "site_language": "Site language",
+            "language_code": "Language code",
+            "timezone": "Timezone",
+            "date_formát": "Date format",
+            "time_format": "Time format",
+            "author": "Author",
+            "show_author": "Show author"
+        },
+        "system": {
+            "session_length": "Session length",
+        "session_length_text": "Session length is described in minutes"
+        },
+        "save_changes": "Save changes",
+        "info": [
+            "Changes were successfuly",
+            "Changes failed, retry process"
+        ]
+    },
+    "maintenance": {
+        "title": "Maintenance",
+        "maintenance_mode": "Maintenance mode",
+        "message": "Message",
+        "save_changes": "Save changes",
+        "info": [
+            "Change was successful",
+            "Change failed, retry process"
+        ]
+    },
+    "seo": {
+        "title": "SEO settings",
+        "sitename_title_location": {
+            "sitename_title_location": "Sitename in page title",
+            "sitename_title_options": {
+                "false": "No",
+                "before": "Before",
+                "after": "After"
+            }
+        },
+        "robots": "Robots",
+        "info": [
+            "Changes were successful",
+            "Changes failed, retry process"
+        ],
+        "save_changes": "Save changes"
+    },
+    "media": {
+        "title": "Media settings",
+        "media_date_sort": {
+            "media_date_sort": "Sorting by date",
+            "info": [
+                "All new files will be save to folders by year and month",
+                "If sorting by type is turn on, all new files will be save at first to folders by type and then by date"
+            ]
+        },
+        "media_type_sort": {
+            "media_type_sort": "Sorting by type",
+            "info": "All new files will be save to folders by type"
+        },
+        "save_upload": "All saved files are renamed to URL form for the highest compatibility",
+        "info": [
+            "Changes were successful",
+            "Changes failed, retry process"
+        ],
+        "save_changes": "Save changes"
+    }
+}

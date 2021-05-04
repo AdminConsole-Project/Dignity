@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{$siteDetails->language}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$title}</title>
+    <meta name="description" content="{$siteDetails->description}" n:if="$siteDetails->description">
+    <meta name="author" content="{$siteDetails->author}" n:if="$siteDetails->showAuthor">
+    <meta name="robots" content="{$siteDetails->robots}" n:if="$siteDetails->robots !== 'index, follow'">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="{$basePath}/{$siteDetails->theme}/fonts/ionicons.min.css">
+</head>
+<body>
+    {include primary from 'navigation.latte'}
+    <main class="page lanidng-page container">
+        {include content}
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <p class="m-0">{$siteDetails->sitename}&nbsp;©&nbsp;{='now'|date:'Y'}</p>
+        </div>
+    </footer>
+    <script src="{$basePath}/{$siteDetails->theme}/js/jquery.min.js" type="application/javascript"></script>
+    <script src="{$basePath}/{$siteDetails->theme}/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="{$basePath}/{$siteDetails->theme}/js/theme.js" type="application/javascript"></script>
+</body>
+</html>

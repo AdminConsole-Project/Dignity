@@ -1,0 +1,119 @@
+{
+    "list": {
+        "title": "Články",
+        "add": "Pridat článok",
+        "list": {
+            "title": "Názov",
+            "alias": "Alias",
+            "visibility": "Viditeľnosť",
+            "actions": "Akcie",
+            "no_articles_created": "Žiadne vytvorené články",
+            "change_visibility": "Zmeniť viditeľnosť",
+            "delete": "Vymazať",
+            "repeate_text": "Zopakujte text"
+        },
+        "info": {
+            "visibility": {
+                "public": "verejné",
+                "private": "súkromné",
+                "set": [
+                    "Zmena viditeľnosti prebehla úspešne",
+                    "Zmena viditeľnosti zlyhala, opakujte proces"
+                ]
+            },
+            "delete": [
+                "Článok bol vymazaný",
+                "Vymazanie článku bolo prerušené",
+                "Aliasy sa nezhodujú - vymazanie článku bolo prerušené",
+                "Vymazanie článku zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Úpraviť článok",
+        "move_to_article_list": "Presť na všetky články",
+        "edit": "Upraviť",
+        "heading": "Nadpis",
+        "media": {
+            "media": "Pridať multimédium",
+            "list": {
+                "preview": "Náhľad",
+                "name": "Meno",
+                "location": "Lokácia",
+                "copy": "Kopírovať",
+                "type": "Typ",
+                "action": "Akcia",
+                "add": "Pridat"
+            }
+        },
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "publication": {
+                "publication": "Uverejnenie",
+                "immediately": "Ihneď",
+                "draft": "Koncept"
+            },
+            "cancel_creation": "Zrušiť vytváranie"
+        },
+        "category": {
+            "category": "Kategória",
+            "uncategorised": "Nekategorizované"
+        },
+        "info": [
+            "Článok bol úspešne upravený",
+            "Úprava článku zlyhala, opakujte proces"
+        ]
+    },
+    "add": {
+        "title": "Pridať článok",
+        "move_to_article_list": "Presť na všetky články",
+        "publish": "Publikovať",
+        "heading": "Nadpis",
+        "media": {
+            "media": "Pridať multimédium",
+            "list": {
+                "preview": "Náhľad",
+                "name": "Meno",
+                "location": "Lokácia",
+                "copy": "Kopírovať",
+                "type": "Typ",
+                "action": "Akcia",
+                "add": "Pridat"
+            }
+        },
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "publication": {
+                "publication": "Uverejnenie",
+                "immediately": "Ihneď",
+                "draft": "Koncept"
+            },
+            "cancel_creation": "Zrušiť vytváranie"
+        },
+        "category": {
+            "category": "Kategória",
+            "uncategorised": "Nekategorizované"
+        },
+        "featured_image": {
+            "image": "Ilustračný obrázok",
+            "alt_text": "Alternatívny text",
+            "select": "Vybrať"
+        },
+        "info": [
+            "Článok bol úspešne vytvorený",
+            "Vytvorenie článku zlyhalo, opakujte proces"
+        ]
+    }
+}

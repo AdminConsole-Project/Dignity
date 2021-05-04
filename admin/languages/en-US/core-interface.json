@@ -1,0 +1,89 @@
+{
+    "info": {
+        "nojs": "JavaScript is disabled, must be enabled for proper functionality",
+        "online": "Internet connection restored",
+        "offline": "No internet connection"
+    },
+    "relogin": {
+        "password": "Password",
+        "login": "Log In",
+        "info": {
+            "invalid_data": "Invalid log in informations",
+            "relogin": [
+                "Your session is over",
+                "Login required"
+            ],
+            "submits": "Number of invalid logins",
+            "max_submits": "The maximum number of invalid logins is",
+            "max_submits_exceeded": "You have exceeded the maximum number of invalid logins"
+        }
+    },
+    "navbar": {
+        "my_website": "My site",
+        "account": {
+            "profile": "Profile",
+            "settings": "Settings",
+            "logout": "Log Out"
+        }
+    },
+    "sidebar": {
+        "close_sidebar": "Close sidebar"
+    },
+    "dashboard": {
+        "dashboard": "Dashboard",
+        "home": "Home",
+        "cache": "Cache",
+        "update": "Updates"
+    },
+    "article": {
+        "articles": "Articles",
+        "all": "All articles",
+        "add": "Add article"
+    },
+    "page": {
+        "pages": "Pages",
+        "all": "All pages",
+        "add": "Add page"
+    },
+    "media": {
+        "media": "Media",
+        "library": "Library",
+        "upload": "Media upload"
+    },
+    "navigation": {
+        "navigation": "Navigation",
+        "all": "All navigations",
+        "add": "Add navigation"
+    },
+    "category": {
+        "category": "Categories",
+        "all": "All categories",
+        "add": "Add category"
+    },
+    "appearance": {
+        "appearance": "Appearance",
+        "themes": "Themes",
+        "add_theme": "Add theme"
+    },
+    "extensions": {
+        "extensions": "Extensions",
+        "all": "All extensions",
+        "add": "Add extension",
+        "modules": "Modules",
+        "languages": "Languages"
+    },
+    "user": {
+        "users": "Users",
+        "all": "All users",
+        "add": "Add user",
+        "profile": "Your profile"
+    },
+    "settings": {
+        "settings": "Settings",
+        "general": "General",
+        "maintenance": "Maintenance",
+        "seo": "SEO",
+        "media": "Media"
+    },
+    "logout": "Log Out"
+}

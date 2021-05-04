@@ -1,0 +1,30 @@
+{
+    "library": {
+        "title": "Media",
+        "list": {
+            "preview": "Preview",
+            "name": "Name",
+            "size": "Size",
+            "location": "Location",
+            "copy": "Copy",
+            "type": "Type",
+            "mime": "Mime",
+            "actions": "Actions",
+            "delete": "Delete"
+        },
+        "info": [
+            "Image was sucessfully deleted",
+            "Image deletion failed, retry process"
+        ]
+    },
+    "upload": {
+        "title": "Media upload"
+    },
+    "uploader": {
+        "filename": "Filename",
+        "browse": "Browse",
+        "uploaded_files": "Uploaded files",
+        "drag_files_here": "Drag files here"
+    },
+    "max_file_size_to_upload": "Max file size to upload"
+}

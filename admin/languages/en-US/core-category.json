@@ -1,0 +1,79 @@
+{
+    "list": {
+        "title": "Categories",
+        "add": "Add category",
+        "list": {
+            "title": "Name",
+            "alias": "Alias",
+            "visibility": "Visibility",
+            "description": "Description",
+            "actions": "Actions",
+            "no_categories_created": "No categories were created",
+            "change_visibility": "Change visibility",
+            "delete": "Delete",
+            "repeate_text": "Repeate text"
+        },
+        "info": {
+            "visibility": {
+                "public": "public",
+                "private": "private",
+                "set": [
+                    "Change of visibity was successful",
+                    "Change of visibity failed, retry process"
+                ]
+            },
+            "delete": [
+                "Category was deleted",
+                "Category deletion was stopped",
+                "Aliases do not match - deletion of category was stopped",
+                "Deletion of category failed, retry process"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Edit category",
+        "move_to_category_list": "Move to category list",
+        "name": "Name",
+        "description": "Description",
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "parent_category": "Parent category",
+            "none": "None"
+        },
+        "save_changes": "Save changes",
+        "info": [
+            "Category was successfully changed",
+            "Category with same alias already exist",
+            "Changes of category failed, retry process"
+        ]
+    },
+    "add": {
+        "title": "Add category",
+        "move_to_category_list": "Move to category list",
+        "create": "Create",
+        "name": "Name",
+        "description": "Description",
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "parent_category": "Parent category",
+            "none": "None"
+        },
+        "info": [
+            "Category was successfully created",
+            "Category with same alias already exist",
+            "Category creation failed, retry process"
+        ]
+    }
+}

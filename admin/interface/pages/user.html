@@ -1,0 +1,331 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+    <a href="user.php?view=add" class="btn btn-outline-primary rounded-btn-custom mb-3" n:attr="title => $lang['list']['add']">
+        <i class="fas fa-plus"></i>
+    </a>
+    <div id="ac-delete-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['delete'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['delete'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-20">{$lang['list']['list']['username']}</th>
+                    <th class="w-15">{$lang['list']['list']['name']}</th>
+                    <th class="w-25">{$lang['list']['list']['email']}</th>
+                    <th class="w-25">{$lang['list']['list']['last_login']}</th>
+                    <th class="w-25">{$lang['list']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$users" n:inner-foreach="$users as $row">
+                <tr>
+                    {if $row['ID'] === $active_user_id}
+                        <td>
+                            <a href="user.php?view=profile">{$row['username']}</a>
+                        </td>
+                    {elseif $row['ID'] === '1'}
+                        <td>{$row['username']}</td>
+                    {else}
+                        <td>
+                            <a n:attr="href => 'user.php?view=edit&id='.$row['ID']">{$row['username']}</a>
+                        </td>
+                    {/if}
+                    <td>{$row['firstname']}&nbsp;{$row['lastname']}</td>
+                    <td>{$row['email']}</td>
+                    <td>{$row['last_login_date']|date: 'H:i - d.m.Y'}</td>
+                    {if $row['ID'] !== '1' && $row['ID'] !== $active_user_id}
+                        <td class="align-middle"><a href="javascript:void(0);" class="text-danger" data-action="delete" n:attr="aria-value => $row['ID'],aria-alias => $row['username'],aria-text => $lang['list']['list']['repeate_text']">{$lang['list']['list']['delete']}<i class="fas fa-trash ml-2"></i></a></td>
+                    {else}
+                        <td></td>
+                    {/if}
+                    <td class="align-middle text-right">{$row['ID']}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{/define}
+{define edit}
+    <div>
+        <h3>{$lang['edit']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="user.php">←{$lang['edit']['move_to_user_list']}</a>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['edit']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['edit']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="user.php?action=edit" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['edit']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <div>
+                    <h5>{$lang['edit']['user_informations']['user_informations']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['edit']['user_informations']['username']['username']}</label>
+                        <input type="hidden" name="id" required n:attr="value => $user_data['ID']">
+                        <input type="text" class="form-control" disabled n:attr="value => $user_data['username']">
+                        <small class="d-block">{$lang['edit']['user_informations']['username']['username_info']}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['edit']['user_informations']['firstname']}</label>
+                        <input type="text" class="form-control" name="firstname" n:attr="value => $user_data['firstname']">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['edit']['user_informations']['lastname']}</label>
+                        <input type="text" class="form-control" name="lastname" n:attr="value => $user_data['lastname']">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['edit']['user_informations']['email']['email']}</label>
+                        <input type="text" class="form-control" name="email" n:attr="value => $user_data['email']">
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['edit']['personal_settings']['personal_settings']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['edit']['personal_settings']['language']['language']}</label>
+                        <select class="form-control" name="language">
+                            <option value="">{$lang['edit']['personal_settings']['language']['default']}</option>
+                            {include '../extra/languages-installed.latte'}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['edit']['security']['security']}</h5>
+                    <div class="form-group">
+                        <p class="mb-2">{$lang['edit']['security']['password']['password']}</p>
+                        <input type="text" class="form-control" name="password" autocomplete="off" n:attr="placeholder => $lang['edit']['security']['password']['password']" v-model="password">
+                        <div class="text-right mt-3">
+                            <button class="btn btn-outline-primary" type="button" v-on:click="generate_password()">{$lang['edit']['security']['password']['generate_password']}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-6 col-lg-7"></div>
+        </div>
+        <script>
+            new Vue({
+                el: '#ac-form',
+                data: {
+                    password: null
+
+                },
+                methods: {
+                    generate_password(){
+
+                        this.password = Math.random().toString(36).slice(-8);
+
+                    }
+                }
+            });
+        </script>
+    </form>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="user.php">←{$lang['add']['move_to_user_list']}</a>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['add']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['add']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['add']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['add']['info'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="user.php?action=add" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['add']['create']}</button>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <div>
+                    <h5>{$lang['add']['user_informations']['user_informations']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['add']['user_informations']['username']}</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['add']['user_informations']['firstname']}</label>
+                        <input type="text" class="form-control" name="firstname">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['add']['user_informations']['lastname']}</label>
+                        <input type="text" class="form-control" name="lastname">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['add']['user_informations']['email']}</label>
+                        <input type="text" class="form-control" name="email" required>
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['add']['personal_settings']['personal_settings']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['add']['personal_settings']['language']['language']}</label>
+                        <select class="form-control" name="language">
+                            <option value="">{$lang['profile']['personal_settings']['language']['default']}</option>
+                            {include '../extra/languages-installed.latte'}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['add']['security']['security']}</h5>
+                    <div class="form-group">
+                        <p class="mb-2">{$lang['add']['security']['password']['password']}</p>
+                        <input type="text" class="form-control" name="password" autocomplete="off" required n:attr="placeholder => $lang['add']['security']['password']['password']" v-model="password">
+                        <div class="text-right mt-3">
+                            <button class="btn btn-outline-primary" type="button" v-on:click="generate_password()">{$lang['add']['security']['password']['generate_password']}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-6 col-lg-7"></div>
+        </div>
+        <script>
+            new Vue({
+                el: '#ac-form',
+                data: {
+                    password: null
+
+                },
+                methods: {
+                    generate_password(){
+
+                        this.password = Math.random().toString(36).slice(-8);
+
+                    }
+                }
+            });
+        </script>
+    </form>
+{/define}
+{define profile}
+    <div>
+        <h3>{$lang['profile']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['profile']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['profile']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="user.php?action=profile" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['profile']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <div>
+                    <h5>{$lang['profile']['user_informations']['user_informations']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['profile']['user_informations']['username']['username']}</label>
+                        <input type="hidden" name="id" required n:attr="value => $user_data['ID']">
+                        <input type="text" class="form-control" disabled n:attr="value => $user_data['username']">
+                        <small class="d-block">{$lang['profile']['user_informations']['username']['username_info']}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['profile']['user_informations']['firstname']}</label>
+                        <input type="text" class="form-control" name="firstname" n:attr="value => $user_data['firstname']">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['profile']['user_informations']['lastname']}</label>
+                        <input type="text" class="form-control" name="lastname" n:attr="value => $user_data['lastname']">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['profile']['user_informations']['email']['email']}</label>
+                        <input type="text" class="form-control" name="email" n:attr="value => $user_data['email']">
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['profile']['personal_settings']['personal_settings']}</h5>
+                    <div class="form-group">
+                        <label>{$lang['profile']['personal_settings']['language']['language']}</label>
+                        <select class="form-control" name="language">
+                            <option value="">{$lang['profile']['personal_settings']['language']['default']}</option>
+                            {include '../extra/languages-installed.latte'}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <h5>{$lang['profile']['security']['security']}</h5>
+                    <div class="form-group">
+                        <p class="mb-2">{$lang['profile']['security']['password']['password']}</p>
+                        <button class="btn btn-outline-primary" type="button" v-show="!password_change" v-on:click="password_change = !password_change">{$lang['profile']['security']['password']['change_password']['change_password']}</button>
+                        <input type="hidden" name="change-password" v-bind:value="password_change">
+                        <div v-show="password_change">
+                            <input :type="password_change ? 'password' : 'hidden'" class="form-control" name="old-password" required n:attr="placeholder => $lang['profile']['security']['password']['change_password']['old_password']" v-model="old_password">
+                            <hr>
+                            <input :type="password_change ? 'password' : 'hidden'" class="form-control mb-3" name="new-password" required n:attr="placeholder => $lang['profile']['security']['password']['change_password']['new_password']" v-model="new_password">
+                            <input :type="password_change ? 'password' : 'hidden'" class="form-control mb-3" name="repeate-password" required n:attr="placeholder => $lang['profile']['security']['password']['change_password']['repeate_new_password']" v-model="repeate_password">
+                            <span class="d-block text-right">
+                                <a href="javascript:void(0);" v-on:click="cancel_password();">{$lang['profile']['security']['password']['change_password']['cancel']}</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="mb-2">{$lang['profile']['security']['sessions']['sessions']}</p>
+                        <table class="w-100">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        {if $user_active_sessions['total'] === 1}
+                                            <button id="logout-all" class="btn btn-outline-primary btn-block" type="button" disabled>{$lang['profile']['security']['sessions']['logout_from_all_devices']}</button>
+                                        {elseif $user_active_sessions['total'] > 1}
+                                            <button id="logout-all" class="btn btn-outline-primary btn-block" type="button">{$lang['profile']['security']['sessions']['logout_from_all_devices']}</button>
+                                        {/if}
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-outline-primary" n:attr="href => 'user.php?action=login-history&id='.$user_data['ID'], title => $lang['profile']['security']['sessions']['download_login_history']">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="mt-1 mb-0" n:if="$user_active_sessions['total'] !== 1">{$lang['profile']['security']['sessions']['active_sessions'][0]}:&nbsp;<strong>{$user_active_sessions['total']}</strong></p>
+                                        <p class="mt-0 mb-0" n:if="$user_active_sessions['browser']">{$lang['profile']['security']['sessions']['active_sessions'][1]}</p>
+                                        <p class="mt-0 mb-0" n:if="$user_active_sessions['ip']">{$lang['profile']['security']['sessions']['active_sessions'][2]}</p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-6 col-lg-7"></div>
+        </div>
+        <script>
+            new Vue({
+                el: '#ac-form',
+                data: {
+                    password_change: false,
+
+                    old_password: '',
+                    new_password: '',
+                    repeate_password: ''
+
+                },
+                methods: {
+                    cancel_password(){
+
+                        this.old_password = '';
+                        this.new_password = '';
+                        this.repeate_password = '';
+
+                        this.password_change = false;
+
+                    }
+                }
+            });
+        </script>
+    </form>
+{/define}

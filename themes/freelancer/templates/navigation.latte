@@ -1,0 +1,44 @@
+{block primary}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" n:href="Homepage:default">{$siteDetails->sitename}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {foreach $navigation as $row}
+                    {ifset $row->presenter, $row->action, $row->id}
+                    <li class="nav-item">
+                        <a class="nav-link" n:href="$row->presenter.':'.$row->action id:$row->id">{$row->text}</a>
+                    </li>
+                    {else}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{$row->url}">{$row->text}</a>
+                        </li>
+                    {/ifset}
+                {/foreach}
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger"  n:href="Homepage:default">{$siteDetails->sitename}</a>
+            <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    {foreach $navigation as $row}
+                    {ifset $row->presenter, $row->action, $row->id}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" n:href="$row->presenter.':'.$row->action id:$row->id">{$row->text}</a>
+                    </li>
+                    {else}
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{$row->url}">{$row->text}</a>
+                        </li>
+                    {/ifset}
+                {/foreach}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{/block}

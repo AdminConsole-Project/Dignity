@@ -1,0 +1,18 @@
+{layout '../components/ac-content.html'}
+{define dashboard}
+    <div class="text-center">
+        <h1>{$lang['dashboard']['welcome']}, {if !empty($user_info['firstname'])}{$user_info['firstname']}{else}{$user_info['username']}{/if}</h1>
+    </div>
+{/define}
+{define cache}
+    <div>
+        <h3>{$lang['cache']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['cache']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['cache']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <button class="btn btn-danger mb-3" type="button" data-toggle="clear-cache">{$lang['cache']['clear']}<i class="fas fa-bolt ml-2"></i></button>
+    <div class="ac-alert simple-ac-alert-warning" role="alert">{$lang['cache']['what_it_is']}</div>
+    <div class="ac-alert simple-ac-alert-warning" role="alert">{$lang['cache']['what_clear_do']}</div>
+{/define}

@@ -1,0 +1,114 @@
+{
+    "list": {
+        "title": "Stránky",
+        "add": "Pridat stránku",
+        "list": {
+            "title": "Názov",
+            "alias": "Alias",
+            "visibility": "Viditeľnosť",
+            "main_page": "Hlavná stránka",
+            "actions": "Akcie",
+            "no_pages_created": "Žiadne vytvorené stránky",
+            "change_visibility": "Zmeniť viditeľnosť",
+            "set_main_page": "Nastaviť ako hlavnú stránku",
+            "delete": "Vymazať",
+            "repeate_text": "Zopakujte text",
+            "set_as_main_page": "Nastaviť ako hlavnú stránku?"
+        },
+        "info": {
+            "visibility": {
+                "public": "verejné",
+                "private": "súkromné",
+                "set": [
+                    "Zmena viditeľnosti prebehla úspešne",
+                    "Zmena viditeľnosti zlyhala, opakujte proces"
+                ]
+            },
+            "main_page": [
+                "Stránka bola úspešne nastavená ako hlavná",
+                "Nastavenie ako hlavnej stránky bolo prerušené",
+                "Nastavenie ako hlavnej stránky zlyhalo, opakujte proces"
+            ],
+            "delete": [
+                "Stránka bola vymazaná",
+                "Vymazanie stránky bolo prerušené",
+                "Aliasy sa nezhodujú - vymazanie stránky bolo prerušené",
+                "Vymazanie stránky zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Upraviť stránku",
+        "move_to_page_list": "Presť na všetky stránky",
+        "edit": "Upraviť",
+        "heading": "Nadpis",
+        "media": {
+            "media": "Pridať multimédium",
+            "list": {
+                "preview": "Náhľad",
+                "name": "Meno",
+                "location": "Lokácia",
+                "copy": "Kopírovať",
+                "type": "Typ",
+                "action": "Akcia",
+                "add": "Pridat"
+            }
+        },
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "publication": {
+                "publication": "Uverejnenie",
+                "immediately": "Ihneď",
+                "draft": "Koncept"
+            },
+            "cancel_creation": "Zrušiť vytváranie"
+        },
+        "info": [
+            "Stránka bola úspešne upravená",
+            "Upravenie stránky zlyhalo, opakujte proces"
+        ]
+    },
+    "add": {
+        "title": "Pridať stránku",
+        "move_to_page_list": "Presť na všetky stránky",
+        "publish": "Publikovať",
+        "heading": "Nadpis",
+        "media": {
+            "media": "Pridať multimédium",
+            "list": {
+                "preview": "Náhľad",
+                "name": "Meno",
+                "location": "Lokácia",
+                "copy": "Kopírovať",
+                "type": "Typ",
+                "action": "Akcia",
+                "add": "Pridat"
+            }
+        },
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "publication": {
+                "publication": "Uverejnenie",
+                "immediately": "Ihneď",
+                "draft": "Koncept"
+            },
+            "cancel_creation": "Zrušiť vytváranie"
+        },
+        "info": [
+            "Stránka bola úspešne vytvorený",
+            "Vytvorenie stránky zlyhalo, opakujte proces"
+        ]
+    }
+}

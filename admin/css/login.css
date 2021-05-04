@@ -1,0 +1,105 @@
+/**
+ * @author    Jakub Habaj
+ * @copyright 2020-2021 Jakub Habaj
+ * @license   GNU General Public License version 3; see LICENSE.txt
+ */
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.ac-login {
+  height: 100%;
+  padding: 16px;
+}
+
+.ac-login .ac-logo img {
+  width: 80px;
+}
+
+.ac-login #ac-login-info {
+  margin-top: 16px;
+}
+
+.ac-login .ac-login-form {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin: auto;
+  -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.33);
+          box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.33);
+  border-radius: 10px;
+  max-width: 450px;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+@media screen and (orientation: landscape) and (max-width: 992px) {
+  .ac-login .ac-login-form {
+    position: relative;
+    top: unset;
+    -webkit-transform: unset;
+            transform: unset;
+    margin: 0 auto 16px;
+  }
+}
+
+.ac-login #ac-pwd-input, .ac-login #ac-pwd-con {
+  position: relative;
+}
+
+.ac-login #ac-pwd-button {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: 2px;
+  border-radius: 0;
+  min-width: 40px;
+}
+
+.ac-login #ac-pwd-button:focus, .ac-login #ac-pwd-button:active {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  outline: none !important;
+}
+
+.ac-login .ac-password-show {
+  background-color: #ffffff;
+}
+
+.ac-login .ac-password-show:hover i {
+  color: #00599a;
+}
+
+.ac-login .ac-password-show:focus i, .ac-login .ac-password-show:active i {
+  color: #006fc0;
+}
+
+.ac-login .ac-password-show i {
+  color: #006fc0;
+}
+
+.ac-login .custom-control-label {
+  color: #000000;
+}
+
+.ac-login .ac-login-add a {
+  color: #000000;
+}
+
+.ac-login .ac-login-add a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.ac-login .spinner-border {
+  border-width: 5px;
+  width: 36.5px;
+  height: 36.5px;
+}

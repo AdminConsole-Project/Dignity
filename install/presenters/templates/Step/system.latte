@@ -1,0 +1,58 @@
+{block content}
+	<h3>{$lang->step->systemCompatibility->systemCompatibility}</h3>
+	<form id="ac-form" action="{link Process:system, lang: $lang->langCode}" method="post">
+		<div class="ac-form">
+			<div class="form-group">
+				<label>{$lang->step->systemCompatibility->webServer}</label>
+				<div class="ac-alert simple-ac-alert-success" role="alert">{do echo $_SERVER['SERVER_SOFTWARE']}</div>
+			</div>
+			<div class="form-group">
+				<label>{$lang->step->systemCompatibility->phpVersion}</label>
+				{if phpversion() >= 7.4}
+					<div class="ac-alert simple-ac-alert-success" role="alert">{do echo phpversion()}</div>
+				{elseif phpversion() >= 7.2}
+					<div class="ac-alert simple-ac-alert-warning" role="alert">{do echo phpversion()}</div>
+				{/if}
+			</div>
+			<div class="form-group">
+				<label>{$lang->step->systemCompatibility->extensions->phpExtensions}</label>
+				<div class="row">
+					<div class="col-sm-6">
+						{if extension_loaded('pdo')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->pdo}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->pdo}</div>
+						{/if}
+						{if extension_loaded('pdo_mysql')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->pdoMySQL}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->pdoMySQL}</div>
+						{/if}
+						{if extension_loaded('json')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->json}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->json}</div>
+						{/if}
+					</div>
+					<div class="col-sm-6">
+						{if extension_loaded('zip')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->zip}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->zip}</div>
+						{/if}
+						{if extension_loaded('mbstring')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->mbstring}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->mbstring}</div>
+						{/if}
+						{if extension_loaded('fileinfo')}
+							<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->systemCompatibility->extensions->fileinfo}</div>
+						{else}
+							<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->systemCompatibility->extensions->fileinfo}</div>
+						{/if}
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+{/block}

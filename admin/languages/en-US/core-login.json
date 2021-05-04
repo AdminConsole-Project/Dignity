@@ -1,0 +1,26 @@
+{
+    "info": {
+        "nojs": [
+            "JavaScript is disabled",
+            "JavaScript must be enabled for proper functionality"
+        ],
+        "online": "Internet connection restored",
+        "offline": "No internet connection"
+    },
+    "login": {
+            "title" : "Log in",
+            "username": "Username / E-mail address",
+            "password": "Password",
+            "remeber_me": "Remember me",
+            "login": "Log in",
+            "back_to_site": "« Back to site",
+            "forgot_password": "Forgot your password?",
+            "info": {
+                "success": "Log in successful",
+                "invalid_data": "Invalid log in informations",
+                "error": "Error",
+                "successful_logout": "Successful log out",
+                "inactivity_logout": "You have been logged out due to inactivity"
+            }
+    }
+}

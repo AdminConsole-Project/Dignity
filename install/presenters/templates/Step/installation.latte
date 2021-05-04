@@ -1,0 +1,19 @@
+{block content}
+	<h3>{$lang->step->installation->installation}</h3>
+	<div>
+		<div class="ac-alert simple-ac-alert-success" role="alert">{$lang->step->installation->successfulInstallation}</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col-md-6">
+			<a href="../" target="_blank" class="btn btn-block btn-primary">{$lang->step->installation->front}</a>
+		</div>
+		<div class="col-md-6">
+			<a href="../admin/" target="_blank" class="btn btn-block btn-primary">{$lang->step->installation->administration}</a>
+		</div>
+	</div>
+	<hr>
+	<div>
+		<a n:href="deleteFolder" class="btn btn-block btn-warning mb-3">{$lang->step->installation->deleteInstallFolder}</a>
+		<div class="ac-alert simple-ac-alert-primary" role="alert">{$lang->step->installation->deleteInstallFolderInfo}</div>
+	</div>
+{/block}

@@ -1,0 +1,61 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+{/define}
+{define modules}
+    <div>
+        <h3>{$lang['modules']['title']}</h3>
+    </div>
+{/define}
+{define languages}
+    <div><h3>{$lang['languages']['title']}</h3></div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['languages']['info']['set'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['languages']['info']['set'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+     <button id="ac-reload" class="btn btn-sm btn-primary mb-3 hide" type="button"><i class="fas fa-sync-alt mr-2"></i>{$lang['languages']['refresh_site']}</i></button>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-1">{$lang['languages']['list']['default']}</th>
+                    <th>{$lang['languages']['list']['title']}</th>
+                    <th>{$lang['languages']['list']['title_native']}</th>
+                    <th>{$lang['languages']['list']['language_code']}</th>
+                    <th colspan="2">{$lang['languages']['list']['version']}</th>
+                </tr>
+            </thead>
+            <tbody n:inner-foreach="$languages_admin as $row">
+                <tr>
+                    {if $row['status'] == 1}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-success size-15" data-status="default" data-toggle="admin-language" n:attr="title => $lang['languages']['list']['set'],aria-value => $row['ID']" style="pointer-events: none;">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    {elseif $row['status'] == 0}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-danger size-15" data-toggle="admin-language" n:attr="title => $lang['languages']['list']['set'],aria-value => $row['ID']">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </td>
+                    {/if}
+                    <td class="align-middle">{$row['title']}</td>
+                    <td class="align-middle">{$row['title_native']}</td>
+                    <td class="align-middle">{$row['lang_code']}</td>
+                    <td class="align-middle">{$row['version']}</td>
+                    <td class="align-middle" n:if="$row['lang_update'] == 1">
+                        <a href="javascript:void(0);" data-toggle="language-update" n:attr="aria-value => $row['ID']">{$lang['languages']['list']['update']}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{/define}

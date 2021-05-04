@@ -1,0 +1,23 @@
+{if $presenter->isLinkCurrent('Step:system')}
+
+    <a n:href="default" class="btn btn-block btn-dark">«&nbsp;{$lang->step->back}</a>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:main')}
+
+    <a n:href="system" class="btn btn-block btn-dark">«&nbsp;{$lang->step->back}</a>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:database')}
+
+    <a n:href="main" class="btn btn-block btn-dark">«&nbsp;{$lang->step->back}</a>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:overview')}
+
+    <a n:href="database" class="btn btn-block btn-dark">«&nbsp;{$lang->step->back}</a>
+
+{/if}

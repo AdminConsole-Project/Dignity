@@ -1,0 +1,119 @@
+{
+    "list": {
+        "title": "Articles",
+        "add": "Add article",
+        "list": {
+            "title": "Name",
+            "alias": "Alias",
+            "visibility": "Visibility",
+            "actions": "Actions",
+            "no_articles_created": "No artilces were created",
+            "change_visibility": "Change visibility",
+            "delete": "Delete",
+            "repeate_text": "Repeate text"
+        },
+        "info": {
+            "visibility": {
+                "public": "public",
+                "private": "private",
+                "set": [
+                    "Change of visibity was successful",
+                    "Change of visibity failed, retry process"
+                ]
+            },
+            "delete": [
+                "Article was deleted",
+                "Article deletion was stopped",
+                "Aliases do not match - deletion of article was stopped",
+                "Deletion of article failed, retry process"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Edit article",
+        "move_to_article_list": "Move to article list",
+        "edit": "Save changes",
+        "heading": "Heading",
+        "media": {
+            "media": "Add medium",
+            "list": {
+                "preview": "Preview",
+                "name": "Name",
+                "location": "Location",
+                "copy": "Copy",
+                "type": "Type",
+                "action": "Action",
+                "add": "Add"
+            }
+        },
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "publication": {
+                "publication": "Publication",
+                "immediately": "Immediately",
+                "draft": "Draft"
+            },
+            "cancel_creation": "Cancel creation"
+        },
+        "category": {
+            "category": "Category",
+            "uncategorised": "Uncategorized"
+        },
+        "info": [
+            "Article was successfully updated",
+            "Article update failed, retry process"
+        ]
+    },
+    "add": {
+        "title": "Add article",
+        "move_to_article_list": "Move to article list",
+        "publish": "Publish",
+        "heading": "Heading",
+        "media": {
+            "media": "Add medium",
+            "list": {
+                "preview": "Preview",
+                "name": "Name",
+                "location": "Location",
+                "copy": "Copy",
+                "type": "Type",
+                "action": "Action",
+                "add": "Add"
+            }
+        },
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "publication": {
+                "publication": "Publication",
+                "immediately": "Immediately",
+                "draft": "Draft"
+            },
+            "cancel_creation": "Cancel creation"
+        },
+        "category": {
+            "category": "Category",
+            "uncategorised": "Uncategorized"
+        },
+        "featured_image": {
+            "image": "Illustrative image",
+            "alt_text": "Alternative text",
+            "select": "Select"
+        },
+        "info": [
+            "Article was successfully created",
+            "Article creation failed, retry process"
+        ]
+    }
+}

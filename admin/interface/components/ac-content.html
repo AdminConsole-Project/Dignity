@@ -1,0 +1,20 @@
+{include '../head.latte'}
+{include 'ac-relogin.html'}
+{include 'ac-navbar.html'}
+{include 'ac-sidebar.html'}
+<div id="ac-content">
+    <div class="container-fluid">
+        <noscript>
+            <div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang_interface['info']['nojs']}</div>
+        </noscript>
+        <div id="ac-of-detector">
+            <div class="ac-alert simple-ac-alert-primary mb-3 hide" role="alert">{$lang_interface['info']['online']}</div>
+            <div class="ac-alert simple-ac-alert-danger mb-3 hide" role="alert">{$lang_interface['info']['offline']}</div>
+        </div>
+        {include #$block}
+    </div>
+</div>
+<script src="js/ac-scripts.js" type="application/javascript"></script>
+<script src="js/ac-relogin.js" type="application/javascript"></script>
+<script src="js/bootstrap.min.js" type="application/javascript"></script>
+{include '../footer.latte'}

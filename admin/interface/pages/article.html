@@ -1,0 +1,438 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+    <a href="article.php?view=add" class="btn btn-outline-primary rounded-btn-custom mb-3" n:attr="title => $lang['list']['add']">
+        <i class="fas fa-plus"></i>
+    </a>
+    <div id="ac-visibility-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['public']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['private']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['visibility']['set'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+   </div>
+    <div id="ac-delete-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['delete'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['delete'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-1">{$lang['list']['list']['visibility']}</th>
+                    <th>{$lang['list']['list']['title']}</th>
+                    <th class="w-10">{$lang['list']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$articles" n:inner-foreach="$articles as $row">
+                <tr>
+                    {if $row['status'] == '1'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-success size-15" data-toggle="article-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    {elseif $row['status'] == '0'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-danger size-15" data-toggle="article-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </td>
+                    {/if}
+                    <td>
+                        <a n:attr="href => 'article.php?view=edit&id='.$row['ID']">{$row['title']}</a>
+                        <div>({$lang['list']['list']['alias']}:&nbsp;{$row['alias']})</div>
+                    </td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" class="text-danger" data-action="delete" n:attr="aria-value => $row['ID'],aria-alias => $row['alias'],aria-text => $lang['list']['list']['repeate_text']">{$lang['list']['list']['delete']}<i class="fas fa-trash ml-2"></i></a>
+                    </td>
+                    <td class="align-middle text-right">{$row['ID']}</td>
+                </tr>
+            </tbody>
+            {if empty($articles)}
+                <tbody>
+                    <tr>
+                        <td class="text-center" colspan="5">{$lang['list']['list']['no_articles_created']}</td>
+                    </tr>
+                </tbody>
+            {/if}
+        </table>
+    </div>
+{/define}
+{define edit}
+    <div>
+        <h3>{$lang['edit']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="article.php">←{$lang['edit']['move_to_article_list']}</a>
+    </div>
+    <div>
+        <form id="ac-form" action="article.php?action=edit" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="ac-info">
+                        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                   </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div>
+                        <button class="btn btn-block btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['edit']['edit']}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="vue-editor-edit" class="mb-3">
+                        <input type="hidden" name="id" required n:attr="value => $article_data['ID']">
+                        <input type="text" class="form-control form-control-lg mb-3" name="title" required n:attr="placeholder => $lang['edit']['heading'], value => $article_data['title']">
+                        <div class="row">
+                            <div class="col-8 col-md-8 col-lg-6 col-xl-4"></div>
+                            <div class="col-4 col-md-4 col-lg-6 col-xl-8 text-right">
+                                <div class="text-right">
+                                    <button class="btn btn-outline-primary editor-btn" type="button" v-on:click="show = !show">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3" v-show="!show">
+                            <div class="col-md-12 col-lg-6"></div>
+                            <div class="col-md-0 col-lg-6">
+                                <ul class="list-group text-left">
+                                    <li class="list-group-item">
+                                        <button class="btn btn-outline-primary rounded-btn-custom" type="button" data-toggle="modal" data-target="#media-modal" n:attr="title => $lang['add']['media']['media']">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <span class="ml-3">{$lang['edit']['media']['media']}</span>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <div class="modal" id="media-modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">{$lang['add']['media']['media']}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="w-15">{$lang['add']['media']['list']['preview']}</th>
+                                                                    <th class="w-10">{$lang['add']['media']['list']['type']}</th>
+                                                                    <th class="w-10 text-right">{$lang['add']['media']['list']['action']}</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody n:if="$media_list" n:inner-foreach="$media_list as $row">
+                                                                <tr>
+                                                                    <td>
+                                                                        {switch $row['type']}
+                                                                            {case image}
+                                                                                <div class="overflow-auto" style="height: 100px; width: 150px;">
+                                                                                    <img src="../{$row['location']}" alt="Image" class="img-fluid" loading="lazy">
+                                                                                </div>
+                                                                            {case video}
+                                                                                <video width="150" height="100" controls>
+                                                                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                                                                </video>
+                                                                            {case audio}
+                                                                                <audio width="150" height="100" controls>
+                                                                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                                                                </audio>
+                                                                        {/switch}
+                                                                    </td>
+                                                                    <td class="align-middle">{$row['type']}</td>
+                                                                    <td class="align-middle text-right">
+                                                                        <button class="btn btn-outline-primary rounded-btn-custom" type="button" data-add="media" aria-value="{$row['location']}" aria-type="{$row['type']}" n:attr="title => $lang['add']['media']['list']['add']">
+                                                                            <i class="fas fa-plus"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            new Vue({
+                                el: '#vue-editor-edit',
+                                data: {
+                                    show: true
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="editor" class="form-control" name="content">{$article_data['content']}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div class="editor-sidebar mb-3">
+                        <p class="editor-text-600">{$lang['edit']['properties']['properties']}</p>
+                        <hr class="editor-hr">
+                        <div id="vue-editor-visibility" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['edit']['properties']['visibility']['visibility']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="visibility" v-show="!show">
+                                {if $article_data['status'] == 1}
+                                    <option value="1" selected>{$lang['edit']['properties']['visibility']['public']}</option>
+                                    <option value="0">{$lang['edit']['properties']['visibility']['private']}</option>
+                                {elseif $article_data['status'] == 0}
+                                    <option value="1">{$lang['edit']['properties']['visibility']['public']}</option>
+                                    <option value="0" selected>{$lang['edit']['properties']['visibility']['private']}</option>
+                                {/if}
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-visibility',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <div id="vue-editor-publication" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['edit']['properties']['publication']['publication']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="publication" v-show="!show">
+                                <option value="1" selected>{$lang['edit']['properties']['publication']['immediately']}</option>
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-publication',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <hr class="editor-hr">
+                        <div class="text-right mt-3">
+                            <a href="article.php" class="text-danger">{$lang['edit']['properties']['cancel_creation']}<i class="fas fa-trash ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="editor-sidebar mb-3">
+                        <p class="editor-text-600">{$lang['edit']['category']['category']}</p>
+                        <hr class="editor-hr">
+                        <div class="mt-3">
+                            <select class="form-control" name="category">
+                                {if $article_data['category'] == 0}
+                                    <option value="0" selected>-&nbsp;{$lang['edit']['category']['uncategorised']}&nbsp;-</option>
+                                {else}
+                                    <option value="0">-&nbsp;{$lang['edit']['category']['uncategorised']}&nbsp;-</option>
+                                {/if}
+                                {category_list_option(0, $article_data['category'])}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="article.php">←{$lang['add']['move_to_article_list']}</a>
+    </div>
+    <div>
+        <form id="ac-form" action="article.php?action=add" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="ac-info">
+                        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div>
+                        <button class="btn btn-block btn-primary" type="submit">{$lang['add']['publish']}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="vue-editor-add" class="mb-3">
+                        <input type="text" class="form-control form-control-lg mb-3" name="title" required n:attr="placeholder => $lang['add']['heading']">
+                        <div class="row">
+                            <div class="col-8 col-md-8 col-lg-6 col-xl-4"></div>
+                            <div class="col-4 col-md-4 col-lg-6 col-xl-8 text-right">
+                                <div class="text-right">
+                                    <button class="btn btn-outline-primary editor-btn" type="button" v-on:click="show = !show">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3" v-show="!show">
+                            <div class="col-md-12 col-lg-6"></div>
+                            <div class="col-md-0 col-lg-6">
+                                <ul class="list-group text-left">
+                                    <li class="list-group-item">
+                                        <button class="btn btn-outline-primary rounded-btn-custom" type="button" data-toggle="modal" data-target="#media-modal" n:attr="title => $lang['add']['media']['media']">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <span class="ml-3">{$lang['add']['media']['media']}</span>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <div class="modal" id="media-modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">{$lang['add']['media']['media']}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="w-15">{$lang['add']['media']['list']['preview']}</th>
+                                                                    <th class="w-10">{$lang['add']['media']['list']['type']}</th>
+                                                                    <th class="w-10 text-right">{$lang['add']['media']['list']['action']}</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody n:if="$media_list" n:inner-foreach="$media_list as $row">
+                                                                <tr>
+                                                                    <td>
+                                                                        {switch $row['type']}
+                                                                            {case image}
+                                                                                <div class="overflow-auto" style="height: 100px; width: 150px;">
+                                                                                    <img src="../{$row['location']}" alt="Image" class="img-fluid" loading="lazy">
+                                                                                </div>
+                                                                            {case video}
+                                                                                <video width="150" height="100" controls>
+                                                                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                                                                </video>
+                                                                            {case audio}
+                                                                                <audio width="150" height="100" controls>
+                                                                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                                                                </audio>
+                                                                        {/switch}
+                                                                    </td>
+                                                                    <td class="align-middle">{$row['type']}</td>
+                                                                    <td class="align-middle text-right">
+                                                                        <button class="btn btn-outline-primary rounded-btn-custom" type="button" data-add="media" aria-value="{$row['location']}" aria-type="{$row['type']}" n:attr="title => $lang['add']['media']['list']['add']">
+                                                                            <i class="fas fa-plus"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            new Vue({
+                                el: '#vue-editor-add',
+                                data: {
+                                    show: true
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="editor" class="form-control" name="content"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div class="editor-sidebar mb-3">
+                        <p class="editor-text-600">{$lang['add']['properties']['properties']}</p>
+                        <hr class="editor-hr">
+                        <div id="vue-editor-visibility" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['add']['properties']['visibility']['visibility']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="visibility" v-show="!show">
+                                <option value="1" selected>{$lang['add']['properties']['visibility']['public']}</option>
+                                <option value="0">{$lang['add']['properties']['visibility']['private']}</option>
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-visibility',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <div id="vue-editor-publication" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['add']['properties']['publication']['publication']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="publication" v-show="!show">
+                                <option value="1" selected>{$lang['add']['properties']['publication']['immediately']}</option>
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-publication',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <hr class="editor-hr">
+                        <div class="text-right mt-3">
+                            <a href="article.php" class="text-danger">{$lang['add']['properties']['cancel_creation']}<i class="fas fa-trash ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="editor-sidebar mb-3">
+                        <p class="editor-text-600">{$lang['add']['category']['category']}</p>
+                        <hr class="editor-hr">
+                        <div class="mt-3">
+                            <select class="form-control" name="category">
+                                <option value="0" selected>-&nbsp;{$lang['add']['category']['uncategorised']}&nbsp;-</option>
+                                {category_list_option()}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{/define}

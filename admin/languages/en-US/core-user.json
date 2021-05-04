@@ -1,0 +1,148 @@
+{
+    "list": {
+        "title": "Users",
+        "add": "Add user",
+        "list": {
+            "username": "Username",
+            "name": "Name",
+            "email": "E-mail",
+            "last_login": "Last login",
+            "actions": "Actions",
+            "delete": "Delete",
+            "repeate_text": "Repeate text"
+        },
+        "info": {
+            "delete": [
+                "User was successfully deleted",
+                "User deletion was aborted",
+                "Texts are not matching - deletion user deletation was aborted",
+                "User deletion failed, retry process"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Edit user",
+        "move_to_user_list": "Move to all users",
+        "user_informations": {
+            "user_informations": "User infomatations",
+            "username": {
+                "username": "Username",
+                "username_info": "Username cannot be change"
+            },
+            "firstname": "Firstname",
+            "lastname": "Lastname",
+            "email": {
+                "email": "E-mail",
+                "email_info": [
+                    "If you will change this setting, you will recieve confirmation e-mail on your old address",
+                    "Change will not be valid until you confirm it"
+                ]
+            }
+        },
+        "personal_settings": {
+            "personal_settings": "Personal settings",
+            "language": {
+                "language": "Language",
+                "default": "Default language of administration"
+            }
+        },
+        "security": {
+            "security": "Security",
+            "password": {
+                "password": "Password",
+                "generate_password": "Generate password"
+            }
+        },
+        "save_changes": "Save changes",
+        "info": [
+            "Chnages were successful",
+            "Chnages failed, retry process"
+        ]
+    },
+    "add": {
+        "title": "Add user",
+        "move_to_user_list": "Move to all users",
+        "create": "Create user",
+        "user_informations": {
+            "user_informations": "User infomatations",
+            "username": "Username",
+            "firstname": "Firstname",
+            "lastname": "Lastname",
+            "email": "E-mail"
+        },
+        "personal_settings": {
+            "personal_settings": "Personal settings",
+            "language": {
+                "language": "Language",
+                "default": "Default language of administration"
+            }
+        },
+        "security": {
+            "security": "Security",
+            "password": {
+                "password": "Password",
+                "generate_password": "Generate password"
+            }
+        },
+        "info": [
+            "User was sucessfully created",
+            "User with same username already exist",
+            "User with same e-mail already exist",
+            "User creation failed, retry process"
+        ]
+    },
+    "profile": {
+        "title": "Profile",
+        "user_informations": {
+            "user_informations": "User infomatations",
+            "username": {
+                "username": "Username",
+                "username_info": "Username cannot be change"
+            },
+            "firstname": "Firstname",
+            "lastname": "Lastname",
+            "email": {
+                "email": "E-mail",
+                "email_info": [
+                    "If you will change this setting, you will recieve confirmation e-mail on your old address",
+                    "Change will not be valid until you confirm it"
+                ]
+            }
+        },
+        "personal_settings": {
+            "personal_settings": "Personal settings",
+            "language": {
+                "language": "Language",
+                "default": "Default language of administration"
+            }
+        },
+        "security": {
+            "security": "Security",
+            "password": {
+                "password": "Password",
+                "change_password": {
+                    "change_password": "Change password",
+                    "old_password": "Old password",
+                    "new_password": "New password",
+                    "repeate_new_password": "Repeate password",
+                    "cancel": "Cancel"
+                }
+            },
+            "sessions": {
+                "sessions": "Sessions",
+                "logout_from_all_devices": "Log out of all devices",
+                "download_login_history": "Download login history",
+                "active_sessions": [
+                    "Active sessions",
+                    "You are logged in only in this browser",
+                    "You have multiple active sessions from your IP address"
+                ]
+            }
+        },
+        "save_changes": "Save changes",
+        "info": [
+            "Changes were successful",
+            "Changes failed, retry process"
+        ]
+    }
+}

@@ -1,0 +1,189 @@
+{define login}
+
+    {var $login_info_success = $lang['login']['info']['success']}
+    {var $login_info_invalid_data = $lang['login']['info']['invalid_data']}
+    {var $login_info_error = $lang['login']['info']['error']}
+    {var $login_info_online = $lang['info']['online']}
+    {var $login_info_offline = $lang['info']['offline']}
+
+    {ifset $_COOKIE["ac-username"]}
+
+        {var $usercookie = $_COOKIE["ac-username"]}
+
+    {else}
+
+        {var $usercookie}
+
+    {/ifset}
+
+    <div id="ac-login-overlay" class="ac-login-overlay hide">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div class="ac-login">
+        <div class="ac-login-form">
+            <div>
+                <div>
+                    <a href="https://www.admin-console.org/" target="_blank" class="ac-logo" rel="noopener noreferrer">
+                        <img src="img/logo-ob.svg" alt="AdminConsole Project Logo" draggable="false">
+                    </a>
+                </div>
+                <div id="ac-login-info">
+                    {ifset $_GET["msg"]}
+                        {if $_GET["msg"] == 'logout'}
+                            <div id="urlmessage" class="ac-alert simple-ac-alert-success" role="alert">{$lang['login']['info']['successful_logout']}</div>
+                        {elseif $_GET["msg"] == 'inactivity'}
+                            <div id="urlmessage" class="ac-alert simple-ac-alert-info-dark" role="alert">{$lang['login']['info']['inactivity_logout']}</div>
+                        {/if}
+                    {/ifset}
+                    <noscript>
+                        <div class="ac-alert simple-ac-alert-danger" role="alert">{$lang['info']['nojs'][0]}<br>{$lang['info']['nojs'][1]}</div>
+                    </noscript>
+                </div>
+                <div class="ac-form">
+                    <form id="ac-form" action="login.php?action=login" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" n:attr="placeholder => $lang['login']['username'], value => $usercookie" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <div id="ac-pwd-con">
+                                <input type="password" id="ac-pwd-input" class="form-control" name="password" n:attr="placeholder => $lang['login']['password']" required>
+                                <button id="ac-pwd-button" class="btn ac-password-show" type="button" alt="Show">
+                                    <i id="ac-pwd-icon" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="remember" name="remember" value="TRUE">
+                                <label class="custom-control-label" for="remember">{$lang['login']['remeber_me']}</label>
+                            </div>
+                            <!--<a href="login.php?view=reset">{$lang['login']['forgot_password']}</a>-->
+                        </div>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <button id="ac-login-button" class="btn btn-primary btn-block" type="submit">{$lang['login']['login']}</button>
+                        </div>
+                    </form>
+                    <div class="ac-login-add">
+                        <a href="../" rel="noreferrer nofollow noopener">{$lang['login']['back_to_site']}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        localStorage.clear();
+
+        let ac_login_button = document.getElementById("ac-login-button");
+        let ac_login_info = document.getElementById("ac-login-info");
+        let ac_login_overlay = document.getElementById("ac-login-overlay");
+
+        let ac_pwd_button = document.getElementById("ac-pwd-button");
+        let ac_pwd_input = document.getElementById("ac-pwd-input");
+        let ac_pwd_icon = document.getElementById("ac-pwd-icon");
+
+        let url_message = document.getElementById("urlmessage");
+
+        let login_info_success = {$login_info_success};
+        let login_info_data = {$login_info_invalid_data};
+        let login_info_error = {$login_info_error};
+        let login_info_online = {$login_info_online};
+        let login_info_offline = {$login_info_offline};
+
+        ac_pwd_button.addEventListener("click",function(){
+
+            if (ac_pwd_input.type === "password"){
+
+                ac_pwd_input.type = "text";
+                ac_pwd_input.focus();
+                ac_pwd_icon.classList.remove('fa-eye');
+                ac_pwd_icon.classList.add('fa-eye-slash');
+
+            }else {
+
+                ac_pwd_input.type = "password";
+                ac_pwd_input.focus();
+                ac_pwd_icon.classList.remove('fa-eye-slash');
+                ac_pwd_icon.classList.add('fa-eye');
+
+            }
+        });
+
+        window.addEventListener('online', function(){
+
+            ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-primary" role="alert">'+login_info_online+'</div>';
+            ac_login_button.disabled = false;
+
+            window.setTimeout(function(){
+
+                ac_login_info.innerHTML = '';
+
+            }, 5000);
+        });
+
+        window.addEventListener('offline', function(){
+
+            ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-danger" role="alert">'+login_info_offline+'</div>';
+            ac_login_button.disabled = true;
+
+            window.setTimeout(function(){
+
+                ac_login_info.innerHTML = '';
+
+            }, 5000);
+        });
+
+        $(document).ready(function(){
+
+            $('form').on('submit', function(e){
+
+                ac_pwd_input.type = "password";
+                ac_pwd_icon.classList.remove('fa-eye-slash');
+                ac_pwd_icon.classList.add('fa-eye');
+
+                ac_login_overlay.classList.remove('hide');
+
+                ac_login_info.innerHTML = '';
+
+                e.preventDefault();
+                let post_url = $(this).attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: post_url,
+                    data: $(this).serialize(),
+                    success: function(data){
+
+                        ac_login_overlay.classList.add('hide');
+
+                        if (data == 0){
+
+                            ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-danger" role="alert">'+login_info_error+'</div>';
+
+                        }else if(data == 1){
+
+                            ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-success" role="alert">'+login_info_success+'</div>';
+                            window.location = "index.php";
+
+                        }else if(data == 2){
+
+                            ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-danger" role="alert">'+login_info_data+'</div>';
+
+                        }
+                    },
+                    error: function(){
+
+                        ac_login_overlay.classList.add('hide');
+                        ac_login_info.innerHTML = '<div class="ac-alert simple-ac-alert-danger" role="alert">'+login_info_error+'</div>';
+
+                    }
+                });
+            });
+        });
+
+    </script>
+{/define}
+
+{include 'head.latte'}
+{include #$block}
+{include 'footer.latte'}

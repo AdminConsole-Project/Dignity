@@ -1,0 +1,80 @@
+{if $presenter->isLinkCurrent('Step:default')}
+
+    <a n:href="default" class="border border-primary d-block px-3 py-2 mb-3"><i class="fas fa-chevron-right"></i>{$lang->sidebar->languageChoose}</a>
+
+{elseif $stepLogger->stepLanguage}
+
+    <a n:href="default" class="border border-success text-success d-block px-3 py-2 mb-3"><i class="fas fa-check"></i>{$lang->sidebar->languageChoose}</a>
+
+{else}
+
+    <a n:href="default" class="border border-dark text-dark d-block px-3 py-2 mb-3"><i class="fas fa-minus"></i>{$lang->sidebar->languageChoose}</a>
+
+{/if}
+
+
+{if $presenter->isLinkCurrent('Step:system')}
+
+    <a n:href="system" class="border border-primary d-block px-3 py-2 mb-3"><i class="fas fa-chevron-right"></i>{$lang->sidebar->systemCompatibility}</a>
+
+{elseif $stepLogger->stepSystem}
+
+    <a n:href="system" class="border border-success text-success d-block px-3 py-2 mb-3"><i class="fas fa-check"></i>{$lang->sidebar->systemCompatibility}</a>
+
+{elseif $stepLogger->stepSystem === false}
+
+    <a n:href="system" class="border border-danger text-danger d-block px-3 py-2 mb-3"><i class="fas fa-times"></i>{$lang->sidebar->systemCompatibility}</a>
+
+{else}
+    <a n:href="system" class="border border-dark text-dark d-block px-3 py-2 mb-3"><i class="fas fa-minus"></i>{$lang->sidebar->systemCompatibility}</a>
+
+{/if}
+
+
+{if $presenter->isLinkCurrent('Step:main')}
+
+    <a n:href="main" class="border border-primary d-block px-3 py-2 mb-3"><i class="fas fa-chevron-right"></i>{$lang->sidebar->mainConfiguration}</a>
+
+{elseif $stepLogger->stepMain}
+
+    <a n:href="main" class="border border-success text-success d-block px-3 py-2 mb-3"><i class="fas fa-check"></i>{$lang->sidebar->mainConfiguration}</a>
+
+{elseif $stepLogger->stepMain === false}
+
+    <a n:href="main" class="border border-danger text-danger d-block px-3 py-2 mb-3"><i class="fas fa-times"></i>{$lang->sidebar->mainConfiguration}</a>
+
+{else}
+
+    <a n:href="main" class="border border-dark text-dark d-block px-3 py-2 mb-3"><i class="fas fa-minus"></i>{$lang->sidebar->mainConfiguration}</a>
+
+{/if}
+
+
+{if $presenter->isLinkCurrent('Step:database')}
+
+    <a n:href="database" class="border border-primary d-block px-3 py-2 mb-3"><i class="fas fa-chevron-right"></i>{$lang->sidebar->databaseConfiguration}</a>
+
+{elseif $stepLogger->stepDatabase}
+
+    <a n:href="database" class="border border-success text-success d-block px-3 py-2 mb-3"><i class="fas fa-check"></i>{$lang->sidebar->databaseConfiguration}</a>
+
+{elseif $stepLogger->stepDatabase === false}
+
+    <a n:href="database" class="border border-danger text-danger d-block px-3 py-2 mb-3"><i class="fas fa-times"></i>{$lang->sidebar->databaseConfiguration}</a>
+
+{else}
+
+    <a n:href="database" class="border border-dark text-dark d-block px-3 py-2 mb-3"><i class="fas fa-minus"></i>{$lang->sidebar->databaseConfiguration}</a>
+
+{/if}
+
+
+{if $presenter->isLinkCurrent('Step:overview')}
+
+    <a n:href="overview" class="border border-primary d-block px-3 py-2 mb-3"><i class="fas fa-chevron-right"></i>{$lang->sidebar->overview}</a>
+
+{else}
+
+    <a n:href="overview" class="border border-dark text-dark d-block px-3 py-2 mb-3"><i class="fas fa-minus"></i>{$lang->sidebar->overview}</a>
+
+{/if}

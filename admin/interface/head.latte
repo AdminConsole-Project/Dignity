@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html n:attr="lang => $lang_code['lang_code']">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dignity CMS">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{$title} - Dignity</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" n:foreach="$head_css_link as $css" n:attr="href => $css">
+
+    <link rel="stylesheet" href="fonts/FontAwesome/fontawesome-all.min.css">
+    <script src="js/vue.min.js" type="application/javascript"></script>
+    <script src="js/jquery-3.4.1.min.js" type="application/javascript"></script>
+
+    <script n:foreach="$head_js_link as $js" n:attr="src => $js" type="application/javascript"></script>
+
+</head>
+{if $body_class !== null || $body_class !== NULL}
+    {var $body_class = ($body_class|implode:' ')}
+{/if}
+<body n:class="$body_class" n:attr="id => $body_id">

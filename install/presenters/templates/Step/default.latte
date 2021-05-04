@@ -1,0 +1,61 @@
+{block content}
+	<h3>{$lang->step->languageConfiguration->languageConfiguration}</h3>
+	<form id="ac-form" action="{link Process:default}" method="post" @submit="sendForm">
+		<div class="ac-form row">
+			<div class="col-sm-6">
+				<label>{$lang->step->languageConfiguration->availableLanguages}&nbsp;<span class="text-danger">*</span></label>
+				<select class="form-control mb-3" name="language">
+					{if $stepData}
+						{if $stepData->language === 'en-US'}
+							<option value="en-US" selected>English (United States)</option>
+							<option value="sk-SK">Slovenčina (Slovenská republika)</option>
+						{/if}
+						{if $stepData->language === 'sk-SK'}
+							<option value="en-US">English (United States)</option>
+							<option value="sk-SK" selected>Slovenčina (Slovenská republika)</option>
+						{/if}
+					{else}
+						<option value="en-US">English (United States)</option>
+						<option value="sk-SK">Slovenčina (Slovenská republika)</option>
+					{/if}
+				</select>
+			</div>
+		</div>
+		<script>
+			new Vue({
+				el: '#ac-form',
+				data: {
+					response: null
+				},
+				methods: {
+					async sendForm(e) {
+
+						e.preventDefault();
+
+						await this.send();
+
+						if (this.response.status === 'OK'){
+							window.location = this.response.redirectUrl;
+						}else {
+
+						}
+					},
+					async send(){
+
+						const data = await axios.post(
+							this.$el.getAttribute('action'),
+							new FormData(this.$el)
+						)
+						.then(function (response) {
+
+							return response.data;
+
+						});
+
+						this.response = data;
+					}
+				}
+			})
+		</script>
+	</form>
+{/block}

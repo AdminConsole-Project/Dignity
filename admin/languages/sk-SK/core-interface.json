@@ -1,0 +1,89 @@
+{
+    "info": {
+        "nojs": "JavaScript nie je povolený, pre správnu funkčnosť musí byť povolený",
+        "online": "Internetové pripojenie bolo obnovené",
+        "offline": "Žiadne internetové pripojenie"
+    },
+    "relogin": {
+        "password": "Heslo",
+        "login": "Prihlásiť",
+        "info": {
+            "invalid_data": "Nesprávne prihlasovacie údaje",
+            "relogin": [
+                "Vaša relácia skončila",
+                "Vyžaduje sa prihlásenie"
+            ],
+            "submits": "Počet neplatných prihlasení",
+            "max_submits": "Maximálny počet neplatných prihlasení je",
+            "max_submits_exceeded": "Prekročili ste maximálny počet neplatných prihlasení"
+        }
+    },
+    "navbar": {
+        "my_website": "Moja stránka",
+        "account": {
+            "profile": "Profil",
+            "settings": "Nastavenia",
+            "logout": "Odhlásiť sa"
+        }
+    },
+    "sidebar": {
+        "close_sidebar": "Zatvoriť bočný panel"
+    },
+    "dashboard": {
+        "dashboard": "Nástenka",
+        "home": "Domovská stránka",
+        "cache": "Cache",
+        "update": "Aktualizácie"
+    },
+    "article": {
+        "articles": "Články",
+        "all": "Všetky články",
+        "add": "Pridať článok"
+    },
+    "page": {
+        "pages": "Stránky",
+        "all": "Všetky stránky",
+        "add": "Pridať stránku"
+    },
+    "media": {
+        "media": "Multimédiá",
+        "library": "Knižnica",
+        "upload": "Nahrať multimédium"
+    },
+    "navigation": {
+        "navigation": "Navigácia",
+        "all": "Všetky navigácie",
+        "add": "Pridať navigáciu"
+    },
+    "category": {
+        "category": "Kategórie",
+        "all": "Všetky kategórie",
+        "add": "Pridať kategóriu"
+    },
+    "appearance": {
+        "appearance": "Vzhľad",
+        "themes": "Témy",
+        "add_theme": "Pridať tému"
+    },
+    "extensions": {
+        "extensions": "Rozšírenia",
+        "all": "Všetky rozšírenia",
+        "add": "Pridať rozšírenie",
+        "modules": "Moduly",
+        "languages": "Jazyky"
+    },
+    "user": {
+        "users": "Používatelia",
+        "all": "Všetci používatelia",
+        "add": "Pridať použivateľa",
+        "profile": "Váš profil"
+    },
+    "settings": {
+        "settings": "Nastavenia",
+        "general": "Všeobecné",
+        "maintenance": "Údržba",
+        "seo": "SEO",
+        "media": "Multimédiá"
+    },
+    "logout": "Odhlásiť sa"
+}

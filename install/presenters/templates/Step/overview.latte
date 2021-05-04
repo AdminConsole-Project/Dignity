@@ -1,0 +1,34 @@
+{block content}
+	<div id="ac-info">
+		{foreach $flashes as $flash}
+			<div class="ac-alert simple-ac-alert-danger" role="alert">{$flash->message}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+		{/foreach}
+	</div>
+	<h3>{$lang->step->overview->overview}</h3>
+	<div>
+		<label>{$lang->step->overview->step->languageChoose}</label>
+		{if $stepLogger->stepLanguage}
+			<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->overview->fulfilled}</div>
+		{else}
+			<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->overview->unfulfilled}</div>
+		{/if}
+		<label>{$lang->step->overview->step->systemCompatibility}</label>
+		{if $stepLogger->stepMain}
+			<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->overview->fulfilled}</div>
+		{else}
+			<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->overview->unfulfilled}</div>
+		{/if}
+		<label>{$lang->step->overview->step->mainConfiguration}</label>
+		{if $stepLogger->stepMain}
+			<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->overview->fulfilled}</div>
+		{else}
+			<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->overview->unfulfilled}</div>
+		{/if}
+		<label>{$lang->step->overview->step->databaseConfiguration}</label>
+		{if $stepLogger->stepDatabase}
+			<div class="ac-alert simple-ac-alert-success mb-3" role="alert">{$lang->step->overview->fulfilled}</div>
+		{else}
+			<div class="ac-alert simple-ac-alert-danger mb-3" role="alert">{$lang->step->overview->unfulfilled}</div>
+		{/if}
+	</div>
+{/block}

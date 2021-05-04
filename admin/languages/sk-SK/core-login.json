@@ -1,0 +1,26 @@
+{
+    "info": {
+        "nojs": [
+            "JavaScript nie je povolený",
+            "Pre správnu funkčnosť musí byť povolený"
+        ],
+        "online": "Internetové pripojenie bolo obnovené",
+        "offline": "Žiadne internetové pripojenie"
+    },
+    "login": {
+            "title" : "Prihlásenie",
+            "username": "Použivateľské meno / E-mailová adresa",
+            "password": "Heslo",
+            "remeber_me": "Zapamätať si ma",
+            "login": "Prihlásiť",
+            "back_to_site": "« Späť na stránku",
+            "forgot_password": "Zabudli ste heslo?",
+            "info": {
+                "success": "Úspešné prihlásenie",
+                "invalid_data": "Nesprávne prihlasovacie údaje",
+                "error": "Chyba",
+                "successful_logout": "Úspešné odhlásenie",
+                "inactivity_logout": "Boli ste odhlásení kvôli nečinnosti"
+            }
+    }
+}

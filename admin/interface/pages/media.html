@@ -1,0 +1,219 @@
+{layout '../components/ac-content.html'}
+{define library}
+    <div>
+        <h3>{$lang['library']['title']}</h3>
+    </div>
+    <input type="hidden" id="uploader-max-size" class="d-none" n:attr="value => upload_max_size(text)" disabled>
+    <input type="hidden" id="uploader-drop-text" class="d-none" n:attr="value => $lang['uploader']['drag_files_here']" disabled>
+    <div id="add-media">
+        <button class="btn btn-outline-primary media-btn mb-3" type="button" v-on:click="show = !show">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div v-show="!show">
+            <div id="ac-uploader" class="ac-uploader">
+                <div class="ac-uploader-header p-2 pr-4">
+                    <span>{$lang['uploader']['filename']}</span>
+                </div>
+                <div class="ac-upload-file-list">
+                    <ul id="ac-upload-list">
+                        <li class="drag-here">{$lang['uploader']['drag_files_here']}</li>
+                    </ul>
+                </div>
+                <div class="ac-uploader-footer p-2 pr-4">
+                    <table class="w-100">
+                        <tbody>
+                            <tr>
+                                <td class="w-50">
+                                    <button id="ac-upload-browse" class="btn btn-sm btn-primary mr-3" type="button"><i class="fas fa-plus-circle mr-2"></i>{$lang['uploader']['browse']}</button>
+                                    <span class="d-none">
+                                        <span class="mr-2">{$lang['uploader']['uploaded_files']}</span>
+                                        <div class="d-inline-block">
+                                            <span id="ac-uploader-counter">0</span>
+                                            <span>/</span>
+                                            <span id="ac-uploader-counter-total">0</span>
+                                        </div>
+                                    </span>
+                                </td>
+                                <td class="w-25">
+                                    <div class="progress d-none">
+                                        <div id="ac-upload-total-progress" class="progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </td>
+                                <td class="w-25 text-right">
+                                    <span id="ac-upload-total-progress-text" class="ml-3">0%</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div >
+                    <li id="ac-upload-template">
+                        <table class="w-100">
+                            <tbody>
+                                <tr>
+                                    <td class="w-50">
+                                        <p class="m-0 text-truncate" style="width: 150px;" data-dz-name></p>
+                                    </td>
+                                    <td class="w-25">
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 0%" data-dz-uploadprogress></div>
+                                        </div>
+                                    </td>
+                                    <td class="w-25 text-right">
+                                        <div>
+                                            <span class="mr-3" data-dz-uploadprogress-text>0%</span>
+                                            <span class="mr-3" data-dz-size></span>
+                                            <span class="text-success invisible">
+                                                <i class="fas fa-check-circle"></i>
+                                            </span>
+                                            <span class="text-danger invisible">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </div>
+            </div>
+            <hr>
+            <p class="my-3">{$lang['max_file_size_to_upload']}:&nbsp;<strong>{upload_max_size(text)}</strong>&nbsp;MB</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#add-media',
+                data: {
+                    show: true
+                }
+            })
+        </script>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['library']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['library']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-15">{$lang['library']['list']['preview']}</th>
+                    <th class="w-25">{$lang['library']['list']['name']}</th>
+                    <th class="w-15">{$lang['library']['list']['location']}</th>
+                    <th class="w-10">{$lang['library']['list']['size']}</th>
+                    <th class="w-10">{$lang['library']['list']['type']}</th>
+                    <th class="w-10">{$lang['library']['list']['mime']}</th>
+                    <th class="w-10">{$lang['library']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$media" n:inner-foreach="$media as $row">
+                <tr>
+                    <td>
+                        {switch $row['type']}
+                            {case image}
+                                <div class="overflow-auto" style="height: 100px; width: 150px;">
+                                    <img src="../{$row['location']}" alt="Image" class="img-fluid" loading="lazy">
+                                </div>
+                            {case video}
+                                <video width="150" height="100" controls>
+                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                </video>
+                            {case audio}
+                                <audio width="150" height="100" controls>
+                                    <source src="../{$row['location']}" type="{$row['mime']}">
+                                </audio>
+                        {/switch}
+                    </td>
+                    <td class="align-middle">{$row['name']|truncate: 30}</td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" data-action="copy" n:attr="aria-location => $row['location'], title => $lang['library']['list']['copy']">{$row['location']|truncate: 50}</a>
+                    </td>
+                    <td class="align-middle">{$row['size']|bytes}</td>
+                    <td class="align-middle">{$row['type']}</td>
+                    <td class="align-middle">{$row['mime_type']}</td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" class="text-danger" data-action="delete" n:attr="aria-value => $row['ID']">{$lang['library']['list']['delete']}<i class="fas fa-trash ml-2"></i></a>
+                    </td>
+                    <td class="align-middle">{$row['ID']}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{/define}
+{define upload}
+    <div>
+        <h3>{$lang['upload']['title']}</h3>
+    </div>
+    <input type="hidden" id="uploader-max-size" class="d-none" n:attr="value => upload_max_size(text)" disabled>
+    <input type="hidden" id="uploader-drop-text" class="d-none" n:attr="value => $lang['uploader']['drag_files_here']" disabled>
+    <div id="ac-uploader" class="ac-uploader">
+        <div class="ac-uploader-header p-2 pr-4">
+            <span>{$lang['uploader']['filename']}</span>
+        </div>
+        <div class="ac-upload-file-list">
+            <ul id="ac-upload-list">
+                <li class="drag-here">{$lang['uploader']['drag_files_here']}</li>
+            </ul>
+        </div>
+        <div class="ac-uploader-footer p-2 pr-4">
+            <table class="w-100">
+                <tbody>
+                    <tr>
+                        <td class="w-50">
+                            <button id="ac-upload-browse" class="btn btn-sm btn-primary mr-3" type="button"><i class="fas fa-plus-circle mr-2"></i>{$lang['uploader']['browse']}</button>
+                            <span class="d-none">
+                                <span class="mr-2">{$lang['uploader']['uploaded_files']}</span>
+                                <div class="d-inline-block">
+                                    <span id="ac-uploader-counter">0</span>
+                                    <span>/</span>
+                                    <span id="ac-uploader-counter-total">0</span>
+                                </div>
+                            </span>
+                        </td>
+                        <td class="w-25">
+                            <div class="progress d-none">
+                                <div id="ac-upload-total-progress" class="progress-bar" style="width: 0%"></div>
+                            </div>
+                        </td>
+                        <td class="w-25 text-right">
+                            <span id="ac-upload-total-progress-text" class="ml-3">0%</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div >
+            <li id="ac-upload-template">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td class="w-50">
+                                <p class="m-0 text-truncate" style="width: 150px;" data-dz-name></p>
+                            </td>
+                            <td class="w-25">
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 0%" data-dz-uploadprogress></div>
+                                </div>
+                            </td>
+                            <td class="w-25 text-right">
+                                <div>
+                                    <span class="mr-3" data-dz-uploadprogress-text>0%</span>
+                                    <span class="mr-3" data-dz-size></span>
+                                    <span class="text-success invisible">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                    <span class="text-danger invisible">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </div>
+    </div>
+    <hr>
+    <p class="my-3">{$lang['max_file_size_to_upload']}:&nbsp;<strong>{upload_max_size(text)}</strong>&nbsp;MB</p>
+{/define}

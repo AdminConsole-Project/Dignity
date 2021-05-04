@@ -1,0 +1,16 @@
+{
+    "dashboard": {
+        "title": "Nástenka",
+        "welcome": "Vitaj"
+    },
+    "cache": {
+        "title": "Cache",
+        "clear": "Vyčistiť cache",
+        "what_it_is": "Cache je dočasná alebo iným slovom vyrovnávacia pamäť. Do cache sa pri prvej návšteve webovej stránky ukladajú údaje. Pri druhej návšteve sa stránka vďaka uloženým údajom načíta rýchlejšie",
+        "what_clear_do": "Vyčistením cache načítate nový obsah. Napríklad pri zmene témy sa zmeny nemusia zobraziť dokým cache nebude obnovená",
+        "info": [
+            "Cache bola úspešne vyčistená",
+            "Vyčistenie cache zlyhalo, opakujte proces"
+        ]
+    }
+}

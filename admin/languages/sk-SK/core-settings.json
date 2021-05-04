@@ -1,0 +1,72 @@
+{
+    "general": {
+        "title": "Všeobecné nastavenia",
+        "site": {
+            "sitename": "Názov stránky",
+            "description": "Popis stránky",
+            "site_language": "Jazyk stránky",
+            "language_code": "Kód jazyka",
+            "timezone": "Časové pásmo",
+            "date_format": "Formát dátumu",
+            "time_format": "Formát času",
+            "author": "Autor",
+            "show_author": "Zobraziť autora"
+        },
+        "system": {
+            "session_length": "Dĺžka relácie",
+            "session_length_text": "Dĺžka relácie je uvádzaná v minútach"
+        },
+        "save_changes": "Uložiť zmeny",
+        "info": [
+            "Zmeny prebehli úspešne",
+            "Zmeny zlyhali, opakujte proces"
+        ]
+    },
+    "maintenance": {
+        "title": "Údržba",
+        "maintenance_mode": "Režim údržby",
+        "message": "Správa",
+        "save_changes": "Uložiť zmeny",
+        "info": [
+            "Zmena prebehla úspešne",
+            "Zmena zlyhala, opakujte proces"
+        ]
+    },
+    "seo": {
+        "title": "Nastavenia SEO",
+        "sitename_title_location": {
+            "sitename_title_location": "Umiestnenie názvu stránky v titulke stránky",
+            "sitename_title_options": {
+                "false": "Nie",
+                "before": "Pred",
+                "after": "Za"
+            }
+        },
+        "robots": "Roboty",
+        "info": [
+            "Zmeny prebehli úspešne",
+            "Zmeny zlyhali, opakujte proces"
+        ],
+        "save_changes": "Uložiť zmeny"
+    },
+    "media": {
+        "title": "Nastavenia multimédií",
+        "media_date_sort": {
+            "media_date_sort": "Triedenie podľa dátumu",
+            "info": [
+                "Všetky nové súbory sú uložené do zložiek podľa roku a mesiaca",
+                "Ak je zapnuté triedenie podľa typu, súbory sú rozdelené najprv do zložiek podľa typu a potom podľa dátumu"
+            ]
+        },
+        "media_type_sort": {
+            "media_type_sort": "Triednie podľa typu",
+            "info": "Všetky nové súbory sú uložené do zložiek podľa typu súboru"
+        },
+        "save_upload": "Všetky ukladané súbory sú upravované do URL tvaru kvôli najvyššej kompatibilite",
+        "info": [
+            "Zmeny prebehli úspešne",
+            "Zmeny zlyhali, opakujte proces"
+        ],
+        "save_changes": "Uložiť zmeny"
+    }
+}

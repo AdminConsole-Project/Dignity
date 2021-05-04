@@ -1,0 +1,7 @@
+{foreach $settings_data['site_languages'] as $row => $val}
+    {if $settings_data['language'] === $row}
+        <option n:attr="value => $row" selected>{$val}</option>
+    {else}
+        <option n:attr="value => $row">{$val}</option>
+    {/if}
+{/foreach}

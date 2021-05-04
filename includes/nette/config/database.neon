@@ -1,0 +1,4 @@
+database:
+	dsn: %db_dsn%
+	user: %db_user%
+	password: %db_password%

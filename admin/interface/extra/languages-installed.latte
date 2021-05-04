@@ -1,0 +1,7 @@
+{foreach $installed_languages as $row}
+    {if $user_data['preferences']['language'] === $row['lang_code']}
+        <option n:attr="value => $row['lang_code']" selected>{$row['title_native']}</option>
+    {else}
+        <option n:attr="value => $row['lang_code']">{$row['title_native']}</option>
+    {/if}
+{/foreach}

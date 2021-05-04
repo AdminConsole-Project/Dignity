@@ -1,0 +1,259 @@
+{layout '../components/ac-content.html'}
+{define general}
+    <div>
+        <h3>{$lang['general']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['general']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['general']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="settings.php?action=general" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['general']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div>
+                    <div class="form-group">
+                        <label>{$lang['general']['site']['sitename']}</label>
+                        <input type="text" class="form-control" name="sitename" required n:attr="value => get_settings('sitename')">
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['general']['site']['description']}</label>
+                        <textarea class="form-control" name="description">{get_settings('description')}</textarea>
+                    </div>
+                    <div id="vue-lang-code" class="form-group">
+                        <label>{$lang['general']['site']['site_language']}</label>
+                        <select class="form-control" name="language" required v-model="selected">
+                            {include '../extra/language-form.latte'}
+                        </select>
+                        <small class="d-block">
+                            <strong>{$lang['general']['site']['language_code']}:</strong>
+                            <span>&nbsp;{{ selected }}</span>
+                        </small>
+                        {var $vue_lang_code = $settings_data['language']}
+                        <script>
+                            new Vue({
+                                el: '#vue-lang-code',
+                                data: {
+                                    selected: {$vue_lang_code}
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['general']['site']['timezone']}</label>
+                        <select class="form-control" name="timezone" required>
+                            {include '../extra/timezone-form.latte'}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['general']['site']['author']}</label>
+                        <input type="text" class="form-control" name="author" n:attr="value => get_settings('author')">
+                        {if get_settings('show_author') === 'true'}
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="show-author" class="custom-control-input" name="show-author" checked>
+                                <label class="custom-control-label" for="show-author">{$lang['general']['site']['show_author']}</label>
+                            </div>
+                        {elseif get_settings('show_author') === 'false'}
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="show-author" class="custom-control-input" name="show-author" value="true">
+                                <label class="custom-control-label" for="show-author">{$lang['general']['site']['show_author']}</label>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div>
+                    <div class="form-group">
+                        <label>{$lang['general']['system']['session_length']}</label>
+                        <input type="number" inputmode="numeric" min="5" class="form-control" name="session-length" required n:attr="value => get_settings('session_length')">
+                        <small class="d-block">{$lang['general']['system']['session_length_text']}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4"></div>
+        </div>
+    </form>
+{/define}
+{define maintenance}
+    <div>
+        <h3>{$lang['maintenance']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['maintenance']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['maintenance']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="settings.php?action=maintenance" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['maintenance']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                    {if $maintenance_status === true || $maintenance_status === TRUE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="maintenance-status" class="custom-control-input" name="maintenance" checked>
+                            <label class="custom-control-label" for="maintenance-status">{$lang['maintenance']['maintenance_mode']}</label>
+                        </div>
+                    {elseif $maintenance_status === false || $maintenance_status === FALSE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="maintenance-status" class="custom-control-input" name="maintenance">
+                            <label class="custom-control-label" for="maintenance-status">{$lang['maintenance']['maintenance_mode']}</label>
+                        </div>
+                    {/if}
+                </div>
+                <div class="form-group">
+                    <label>{$lang['maintenance']['message']}</label>
+                    <textarea class="form-control" name="maintenance-message">{get_settings('maintenance_message')}</textarea>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-8"></div>
+        </div>
+    </form>
+{/define}
+{define seo}
+    <div>
+        <h3>{$lang['seo']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['seo']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['seo']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="settings.php?action=seo">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['seo']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div>
+                    <div class="form-group">
+                        <label>{$lang['seo']['sitename_title_location']['sitename_title_location']}</label>
+                        <select class="form-control" name="sitename-title-location">
+                            {include '../extra/sitename-url-form.latte'}
+                        </select>
+                        <div class="text-right">
+                            <a href="javascript:void(0);" v-on:click="sitename_title_location = !sitename_title_location">
+                                <i class="fas fa-question-circle"></i>
+                            </a>
+                        </div>
+                        <div v-show="!sitename_title_location">
+                            <small class="d-block">
+                                <strong>{$lang['seo']['sitename_title_location']['sitename_title_options']['false']}:</strong>
+                                <span>&nbsp;Home</span>
+                            </small>
+                            <small class="d-block">
+                                <strong>{$lang['seo']['sitename_title_location']['sitename_title_options']['before']}:</strong>
+                                <span>&nbsp;<span class="text-primary">{get_settings('sitename')}</span> - Home</span>
+                            </small>
+                            <small class="d-block">
+                                <strong>{$lang['seo']['sitename_title_location']['sitename_title_options']['after']}:</strong>
+                                <span>&nbsp;Home - <span class="text-primary">{get_settings('sitename')}</span></span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{$lang['seo']['robots']}</label>
+                        <select class="form-control" name="robots">
+                            <option value="index, follow">index, follow</option>
+                            <option value="noindex, follow">noindex, follow</option>
+                            <option value="index, nofollow">index, nofollow</option>
+                            <option value="noindex, nofollow">noindex, nofollow</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-8"></div>
+        </div>
+        <script>
+            new Vue({
+                el: '#ac-form',
+                data: {
+                    sitename_title_location: true
+                }
+            })
+        </script>
+    </form>
+{/define}
+{define media}
+    <div>
+        <h3>{$lang['media']['title']}</h3>
+    </div>
+    <div id="ac-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['media']['info'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['media']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <form id="ac-form" action="settings.php?action=media" method="POST">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['media']['save_changes']}</button>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {if $settings_data['media_date_sort'] === true || $settings_data['media_date_sort'] === TRUE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="media-date-sort" class="custom-control-input" name="media-date-sort" checked>
+                            <label class="custom-control-label" for="media-date-sort">{$lang['media']['media_date_sort']['media_date_sort']}</label>
+                        </div>
+                    {elseif $settings_data['media_date_sort'] === false || $settings_data['media_date_sort'] === FALSE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="media-date-sort" class="custom-control-input" name="media-date-sort">
+                            <label class="custom-control-label" for="media-date-sort">{$lang['media']['media_date_sort']['media_date_sort']}</label>
+                        </div>
+                    {/if}
+                    <div>
+                        <a href="javascript:void(0);" v-on:click="media_date_sort = !media_date_sort">
+                            <i class="fas fa-question-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-12">
+                <div v-show="!media_date_sort">
+                    <div class="ac-alert simple-ac-alert-secondary" role="alert">{$lang['media']['media_date_sort']['info'][0]}<br>{$lang['media']['media_date_sort']['info'][1]}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {if $settings_data['media_type_sort'] === true || $settings_data['media_type_sort'] === TRUE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="media-type-sort" class="custom-control-input" name="media-type-sort" checked>
+                            <label class="custom-control-label" for="media-type-sort">{$lang['media']['media_type_sort']['media_type_sort']}</label>
+                        </div>
+                    {elseif $settings_data['media_type_sort'] === false || $settings_data['media_type_sort'] === FALSE}
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="media-type-sort" class="custom-control-input" name="media-type-sort">
+                            <label class="custom-control-label" for="media-type-sort">{$lang['media']['media_type_sort']['media_type_sort']}</label>
+                        </div>
+                    {/if}
+                    <div>
+                        <a href="javascript:void(0);" v-on:click="media_type_sort = !media_type_sort">
+                            <i class="fas fa-question-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-12">
+                <div v-show="!media_type_sort">
+                    <div class="ac-alert simple-ac-alert-secondary" role="alert">{$lang['media']['media_type_sort']['info']}</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el: '#ac-form',
+                data: {
+                    media_date_sort: true,
+                    media_type_sort: true,
+                    line_break: true
+                }
+            })
+        </script>
+    </form>
+    <div class="ac-alert simple-ac-alert-warning" role="alert">{$lang['media']['save_upload']}</div>
+{/define}

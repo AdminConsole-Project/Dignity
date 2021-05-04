@@ -1,0 +1,148 @@
+{
+    "list": {
+        "title": "Navigácie",
+        "add": "Pridat navigáciu",
+        "list": {
+            "title": "Názov",
+            "alias": "Alias",
+            "visibility": "Viditeľnosť",
+            "actions": "Akcie",
+            "no_navigations_created": "Žiadne vytvorené navigácie",
+            "change_visibility": "Zmeniť viditeľnosť",
+            "delete": "Vymazať",
+            "repeate_text": "Zopakujte text"
+        },
+        "info": {
+            "visibility": {
+                "public": "verejné",
+                "private": "súkromné",
+                "set": [
+                    "Zmena viditeľnosti prebehla úspešne",
+                    "Zmena viditeľnosti zlyhala, opakujte proces"
+                ]
+            },
+            "delete": [
+                "Navigácia bola vymazaná",
+                "Vymazanie navigácie bolo prerušené",
+                "Aliasy sa nezhodujú - vymazanie navigácie bolo prerušené",
+                "Vymazanie navigácie zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Úpraviť navigáciu",
+        "move_to_navigation_list": "Presť na všetky navigácie",
+        "save_changes": "Uložiť zmeny",
+        "name": "Názov",
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "position": {
+                "position": "Pozícia",
+                "primary": "Hlavná",
+                "secondary": "Sekundárna"
+            }
+        },
+        "items": {
+            "items": "Položky",
+            "choose": "Vyberte",
+            "pages": "Stránky",
+            "articles": "Články",
+            "categories": "Kategórie",
+            "own_link": "Vlastný odkaz",
+            "address": "Adresa",
+            "text": "Text",
+            "add": "Pridať do menu"
+        },
+        "structure": {
+            "structure": "Štruktúra",
+            "navigation_tag": "Navigačný štítok",
+            "delete": "Vymazať",
+            "move": {
+                "up": "Presunúť hore",
+                "down": "Presunúť dole"
+            },
+            "page": {
+                "page": "Stránka"
+            },
+            "article": {
+                "article": "Článok"
+            },
+            "category": {
+                "category": "Kategória"
+            },
+            "link": {
+                "link": "Vlastný odkaz",
+                "address": "Adresa"
+            }
+        },
+        "info": [
+            "Navigácia bola úspešne zmenená",
+            "Navigácia s rovnakým aliasom už existuje",
+            "Zmeneny navigácie zlyhali, opakujte proces"
+        ]
+    },
+    "add": {
+        "title": "Pridať navigáciu",
+        "move_to_navigation_list": "Presť na všetky navigácie",
+        "create": "Vytvoriť",
+        "name": "Názov",
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "position": {
+                "position": "Pozícia",
+                "primary": "Hlavná",
+                "secondary": "Sekundárna"
+            }
+        },
+        "items": {
+            "items": "Položky",
+            "choose": "Vyberte",
+            "pages": "Stránky",
+            "articles": "Články",
+            "categories": "Kategórie",
+            "own_link": "Vlastný odkaz",
+            "address": "Adresa",
+            "text": "Text",
+            "add": "Pridať do menu"
+        },
+        "structure": {
+            "structure": "Štruktúra",
+            "navigation_tag": "Navigačný štítok",
+            "delete": "Vymazať",
+            "move": {
+                "up": "Presunúť hore",
+                "down": "Presunúť dole"
+            },
+            "page": {
+                "page": "Stránka"
+            },
+            "article": {
+                "article": "Článok"
+            },
+            "category": {
+                "category": "Kategória"
+            },
+            "link": {
+                "link": "Vlastný odkaz",
+                "address": "Adresa"
+            }
+        },
+        "info": [
+            "Navigácia bola úspešne vytvorená",
+            "Navigácia s rovnakým aliasom už existuje",
+            "Vytvorenie navigácie zlyhalo, opakujte proces"
+        ]
+    }
+}

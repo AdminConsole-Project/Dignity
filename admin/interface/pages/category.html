@@ -1,0 +1,222 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+    <a href="category.php?view=add" class="btn btn-outline-primary rounded-btn-custom mb-3" n:attr="title => $lang['list']['add']">
+        <i class="fas fa-plus"></i>
+    </a>
+    <div id="ac-visibility-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['public']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['visibility']['set'][0]}&nbsp;-&nbsp;<strong class="text-uppercase">{$lang['list']['info']['visibility']['private']}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['visibility']['set'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+   </div>
+    <div id="ac-delete-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['delete'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['delete'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-1">{$lang['list']['list']['visibility']}</th>
+                    <th>{$lang['list']['list']['title']}</th>
+                    <th>{$lang['list']['list']['description']}</th>
+                    <th class="w-10">{$lang['list']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$categories" n:inner-foreach="$categories as $row">
+                <tr>
+                    {if $row['status'] == '1'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-success size-15" data-toggle="category-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    {elseif $row['status'] == '0'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-danger size-15" data-toggle="category-visibility" n:attr="title => $lang['list']['list']['change_visibility'],aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </td>
+                    {/if}
+                    <td>
+                        {if $row['level-mark'] === null}
+                            <a n:attr="href => 'category.php?view=edit&id='.$row['ID']">{$row['name']}</a>
+                        {else}
+                            <a n:attr="href => 'category.php?view=edit&id='.$row['ID']">{$row['level-mark']}&nbsp;{$row['name']}</a>
+                        {/if}
+                        <div>({$lang['list']['list']['alias']}:&nbsp;{$row['alias']})</div>
+                    </td>
+                    <td class="align-middle">{$row['description']|truncate:15}</td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" class="text-danger" data-action="delete" n:attr="aria-value => $row['ID'],aria-alias => $row['alias'],aria-text => $lang['list']['list']['repeate_text']">{$lang['list']['list']['delete']}<i class="fas fa-trash ml-2"></i></a>
+                    </td>
+                    <td class="align-middle text-right">{$row['ID']}</td>
+                </tr>
+            </tbody>
+            {if empty($categories)}
+                <tbody>
+                    <tr>
+                        <td class="text-center" colspan="5">{$lang['list']['list']['no_categories_created']}</td>
+                    </tr>
+                </tbody>
+            {/if}
+        </table>
+    </div>
+{/define}
+{define edit}
+    <div>
+        <h3>{$lang['edit']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="category.php">←{$lang['edit']['move_to_category_list']}</a>
+    </div>
+    <div>
+        <form id="ac-form" action="category.php?action=edit" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="ac-info">
+                        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['edit']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                   </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div>
+                        <button class="btn btn-block btn-primary" type="submit"><i class="fas fa-save mr-2"></i>{$lang['edit']['save_changes']}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div class="form-group">
+                        <input type="hidden" name="id" required n:attr="value => $category_data['ID']">
+                        <input type="text" class="form-control form-control-lg" name="name" required n:attr="placeholder => $lang['edit']['name'], value => $category_data['name']">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" rows="5" n:attr="placeholder => $lang['edit']['description']">{$category_data['description']}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div class="editor-sidebar">
+                        <p class="editor-text-600">{$lang['edit']['properties']['properties']}</p>
+                        <hr class="editor-hr">
+                        <div id="vue-editor-visibility" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['edit']['properties']['visibility']['visibility']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['edit']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="visibility" v-show="!show">
+                                {if $category_data['status'] == 1}
+                                    <option value="1" selected>{$lang['edit']['properties']['visibility']['public']}</option>
+                                    <option value="0">{$lang['edit']['properties']['visibility']['private']}</option>
+                                {elseif $category_data['status'] == 0}
+                                    <option value="1">{$lang['edit']['properties']['visibility']['public']}</option>
+                                    <option value="0" selected>{$lang['edit']['properties']['visibility']['private']}</option>
+                                {/if}
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-visibility',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <div>
+                            <label>{$lang['edit']['properties']['parent_category']}</label>
+                            <select class="form-control" name="parent">
+                                {if $category_data['parent'] == 0}
+                                    <option value="0" selected>-&nbsp;{$lang['edit']['properties']['none']}&nbsp;-</option>
+                                {else}
+                                    <option value="0">-&nbsp;{$lang['edit']['properties']['none']}&nbsp;-</option>
+                                {/if}
+                                {category_list_option($category_data['ID'], $category_data['parent'])}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="category.php">←{$lang['add']['move_to_category_list']}</a>
+    </div>
+    <div>
+        <form id="ac-form" action="category.php?action=add" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div id="ac-info">
+                        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+                   </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div>
+                        <button class="btn btn-block btn-primary" type="submit">{$lang['add']['create']}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-8 col-xl-9">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" name="name" required n:attr="placeholder => $lang['add']['name']">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" rows="5" n:attr="placeholder => $lang['add']['description']"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-3">
+                    <div class="editor-sidebar">
+                        <p class="editor-text-600">{$lang['add']['properties']['properties']}</p>
+                        <hr class="editor-hr">
+                        <div id="vue-editor-visibility" class="mt-3 mb-3">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <p class="editor-text">{$lang['add']['properties']['visibility']['visibility']}:</p>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="javascript:void(0);" class="editor-text" v-on:click="show = !show">{$lang['add']['properties']['edit']}&nbsp;<i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <select class="form-control mt-3 mb-3" name="visibility" v-show="!show">
+                                <option value="1" selected>{$lang['add']['properties']['visibility']['public']}</option>
+                                <option value="0">{$lang['add']['properties']['visibility']['private']}</option>
+                            </select>
+                            <script>
+                                new Vue({
+                                    el: '#vue-editor-visibility',
+                                    data: {
+                                        show: true
+                                    }
+                                })
+                            </script>
+                        </div>
+                        <div>
+                            <label>{$lang['add']['properties']['parent_category']}</label>
+                            <select class="form-control" name="parent">
+                                <option value="0">-&nbsp;{$lang['add']['properties']['none']}&nbsp;-</option>
+                                {category_list_option()}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{/define}

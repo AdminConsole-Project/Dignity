@@ -1,0 +1,29 @@
+{if $presenter->isLinkCurrent('Step:default')}
+
+    <button class="btn btn-block btn-primary" type="submit" form="ac-form">{$lang->step->continue}&nbsp;»</button>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:system')}
+
+    <button class="btn btn-block btn-primary" type="submit" form="ac-form">{$lang->step->continue}&nbsp;»</button>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:main')}
+
+    <button class="btn btn-block btn-primary" type="submit" form="ac-form">{$lang->step->continue}&nbsp;»</button>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:database')}
+
+    <button class="btn btn-block btn-primary" type="submit" form="ac-form">{$lang->step->continue}&nbsp;»</button>
+
+{/if}
+
+{if $presenter->isLinkCurrent('Step:overview')}
+
+    <a n:href="installation" class="btn btn-block btn-primary">{$lang->step->install}</a>
+
+{/if}

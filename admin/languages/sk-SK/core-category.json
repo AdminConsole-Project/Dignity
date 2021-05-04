@@ -1,0 +1,79 @@
+{
+    "list": {
+        "title": "Kategórie",
+        "add": "Pridat kategóriu",
+        "list": {
+            "title": "Názov",
+            "alias": "Alias",
+            "visibility": "Viditeľnosť",
+            "description": "Popis",
+            "actions": "Akcie",
+            "no_categories_created": "Žiadne vytvorené kategórie",
+            "change_visibility": "Zmeniť viditeľnosť",
+            "delete": "Vymazať",
+            "repeate_text": "Zopakujte text"
+        },
+        "info": {
+            "visibility": {
+                "public": "verejné",
+                "private": "súkromné",
+                "set": [
+                    "Zmena viditeľnosti prebehla úspešne",
+                    "Zmena viditeľnosti zlyhala, opakujte proces"
+                ]
+            },
+            "delete": [
+                "Kategória bola vymazaná",
+                "Vymazanie kategórie bolo prerušené",
+                "Aliasy sa nezhodujú - vymazanie kategórie bolo prerušené",
+                "Vymazanie kategórie zlyhalo, opakujte proces"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Úpraviť kategóriu",
+        "move_to_category_list": "Presť na všetky kategórie",
+        "name": "Názov",
+        "description": "Popis",
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "parent_category": "Nadradená kategória",
+            "none": "Žiadna"
+        },
+        "save_changes": "Uložiť zmeny",
+        "info": [
+            "Kategória bola úspešne zmenená",
+            "Kategória s rovnakým aliasom už existuje",
+            "Zmeneny kategórie zlyhali, opakujte proces"
+        ]
+    },
+    "add": {
+        "title": "Pridať kategóriu",
+        "move_to_category_list": "Presť na všetky kategórie",
+        "create": "Vytvoriť",
+        "name": "Názov",
+        "description": "Popis",
+        "properties": {
+            "properties": "Vlastnosti",
+            "edit": "Upraviť",
+            "visibility": {
+                "visibility": "Viditeľnosť",
+                "public": "Verejné",
+                "private": "Súkromné"
+            },
+            "parent_category": "Nadradená kategória",
+            "none": "Žiadna"
+        },
+        "info": [
+            "Kategória bola úspešne vytvorená",
+            "Kategória s rovnakým aliasom už existuje",
+            "Vytvorenie kategórie zlyhalo, opakujte proces"
+        ]
+    }
+}

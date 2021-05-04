@@ -1,0 +1,149 @@
+{layout '../components/ac-content.html'}
+{define list}
+    <div>
+        <h3>{$lang['list']['title']}</h3>
+    </div>
+    <a href="themes.php?view=add" class="btn btn-outline-primary rounded-btn-custom mb-3" n:attr="title => $lang['list']['add']">
+        <i class="fas fa-plus"></i>
+    </a>
+    <div id="ac-main-theme-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['main_theme'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['main_theme'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['main_theme'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div id="ac-delete-info">
+        <div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang['list']['info']['delete'][0]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark hide" role="alert">{$lang['list']['info']['delete'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang['list']['info']['delete'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-1">{$lang['list']['list']['main_theme']}</th>
+                    <th class="w-10">{$lang['list']['list']['title']}</th>
+                    <th class="w-25">{$lang['list']['list']['description']}</th>
+                    <th class="w-10">{$lang['list']['list']['actions']}</th>
+                    <th class="w-1 text-right">ID</th>
+                </tr>
+            </thead>
+            <tbody n:if="$themes" n:inner-foreach="$themes as $row">
+                <tr>
+                    {if $row['status'] == '1'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-success size-15" data-toggle="theme-main" style="pointer-events: none;" n:attr="aria-value => $row['ID'],aria-status => $row['status']">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    {elseif $row['status'] == '0'}
+                        <td class="align-middle text-center">
+                            <a href="javascript:void(0);" class="text-danger size-15" data-toggle="theme-main" n:attr="title => $lang['list']['list']['set_main_theme'],aria-value => $row['ID'],aria-status => $row['status'],aria-text => $lang['list']['list']['set_as_main_theme']">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </td>
+                    {/if}
+                    <td>
+                        <div>{$row['title']}</div>
+                        <div>({$lang['list']['list']['name']}:&nbsp;{$row['name']})</div>
+                    </td>
+                    <td>{$row['description']}</td>
+                    <td class="align-middle">
+                        <a href="javascript:void(0);" class="text-danger" data-action="delete" n:if="$row['status'] != '1'" n:attr="aria-value => $row['ID'],aria-alias => $row['name'],aria-text => $lang['list']['list']['repeate_text'], aria-text-confirmation => $lang['list']['list']['are_you_sure']">{$lang['list']['list']['delete']}<i class="fas fa-trash ml-2"></i></a>
+                    </td>
+                    <td class="align-middle text-right">{$row['ID']}</td>
+                </tr>
+            </tbody>
+            {if empty($themes)}
+                <tbody>
+                    <tr>
+                        <td class="text-center" colspan="5">{$lang['list']['list']['no_themes_created']}</td>
+                    </tr>
+                </tbody>
+            {/if}
+        </table>
+    </div>
+{/define}
+{define add}
+    <div>
+        <h3>{$lang['add']['title']}</h3>
+    </div>
+    <div class="mb-3">
+        <a href="themes.php">←{$lang['add']['move_to_theme_list']}</a>
+    </div>
+    <input type="hidden" id="uploader-max-size" class="d-none" n:attr="value => upload_max_size(text)" disabled>
+    <input type="hidden" id="uploader-drop-text" class="d-none" n:attr="value => $lang['uploader']['drag_files_here']" disabled>
+    <div id="ac-info" class="mb-3">
+        <div class="ac-alert simple-ac-alert-success mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][0]}</strong><button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-info-dark mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][1]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][2]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][3]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+        <div class="ac-alert simple-ac-alert-danger mb-md-0 mb-sm-3 hide" role="alert">{$lang['add']['info'][4]}<button type="button" class="close" data-toggle="alert" aria-hidden="true" aria-label="Close"><span>&times;</span></button></div>
+
+    </div>
+    <div id="ac-uploader" class="ac-uploader">
+        <div class="ac-uploader-header p-2 pr-4">
+            <span>{$lang['uploader']['filename']}</span>
+        </div>
+        <div class="ac-upload-file-list">
+            <ul id="ac-upload-list">
+                <li class="drag-here">{$lang['uploader']['drag_files_here']}</li>
+            </ul>
+        </div>
+        <div class="ac-uploader-footer p-2 pr-4">
+            <table class="w-100">
+                <tbody>
+                    <tr>
+                        <td class="w-50">
+                            <button id="ac-upload-browse" class="btn btn-sm btn-primary mr-3" type="button"><i class="fas fa-plus-circle mr-2"></i>{$lang['uploader']['browse']}</button>
+                            <button id="ac-upload-start" class="btn btn-sm btn-dark mr-3" type="button"><i class="fas fa-upload mr-2"></i>{$lang['uploader']['upload']}</button>
+                        </td>
+                        <td class="w-50 text-right">
+                            <span class="d-none">
+                                <span class="mr-2">{$lang['uploader']['uploaded_files']}</span>
+                                <div class="d-inline-block">
+                                    <span id="ac-uploader-counter">0</span>
+                                    <span>/</span>
+                                    <span id="ac-uploader-counter-total">0</span>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div >
+            <li id="ac-upload-template">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td class="w-50">
+                                <p class="m-0 text-truncate" style="width: 150px;" data-dz-name></p>
+                            </td>
+                            <td class="w-25">
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 0%" data-dz-uploadprogress></div>
+                                </div>
+                            </td>
+                            <td class="w-25 text-right">
+                                <div>
+                                    <span class="mr-3" data-dz-uploadprogress-text>0%</span>
+                                    <span class="mr-3" data-dz-size></span>
+                                    <span class="text-success invisible">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                    <span class="text-danger invisible">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </div>
+    </div>
+    <hr>
+    <p class="my-3">{$lang['add']['accepted_file']}:&nbsp;<strong>ZIP</strong></p>
+    <p>{$lang['max_file_size_to_upload']}:&nbsp;<strong>{upload_max_size(text)}</strong>&nbsp;MB</p>
+{/define}

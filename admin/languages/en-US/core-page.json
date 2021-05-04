@@ -1,0 +1,114 @@
+{
+    "list": {
+        "title": "Pages",
+        "add": "Add page",
+        "list": {
+            "title": "Name",
+            "alias": "Alias",
+            "visibility": "Visibility",
+            "main_page": "Main page",
+            "actions": "Actions",
+            "no_pages_created": "No pages were created",
+            "change_visibility": "Change visibility",
+            "set_main_page": "Set as main page",
+            "delete": "Delete",
+            "repeate_text": "Repeate text",
+            "set_as_main_page": "Set as main page?"
+        },
+        "info": {
+            "visibility": {
+                "public": "public",
+                "private": "private",
+                "set": [
+                    "Change of visibity was successful",
+                    "Change of visibity failed, retry process"
+                ]
+            },
+            "main_page": [
+                "Page was successfully set as main page",
+                "Setting as main page was stopped",
+                "Setting as main page failed, retry process"
+            ],
+            "delete": [
+                "Page was deleted",
+                "Page deletion was stopped",
+                "Aliases do not match - deletion of page was stopped",
+                "Deletion of page failed, retry process"
+            ]
+        }
+    },
+    "edit": {
+        "title": "Edit page",
+        "move_to_page_list": "Move to page list",
+        "edit": "Save changes",
+        "heading": "Heading",
+        "media": {
+            "media": "Add medium",
+            "list": {
+                "preview": "Preview",
+                "name": "Name",
+                "location": "Location",
+                "copy": "Copy",
+                "type": "Type",
+                "action": "Action",
+                "add": "Add"
+            }
+        },
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "publication": {
+                "publication": "Publication",
+                "immediately": "Immediately",
+                "draft": "Draft"
+            },
+            "cancel_creation": "Cancel creation"
+        },
+        "info": [
+            "Page was successfully updated",
+            "Page update failed, retry process"
+        ]
+    },
+    "add": {
+        "title": "Add Page",
+        "move_to_page_list": "Move to page list",
+        "publish": "Publish",
+        "heading": "Heading",
+        "media": {
+            "media": "Add medium",
+            "list": {
+                "preview": "Preview",
+                "name": "Name",
+                "location": "Location",
+                "copy": "Copy",
+                "type": "Type",
+                "action": "Action",
+                "add": "Add"
+            }
+        },
+        "properties": {
+            "properties": "Properties",
+            "edit": "Edit",
+            "visibility": {
+                "visibility": "Visibility",
+                "public": "Public",
+                "private": "Private"
+            },
+            "publication": {
+                "publication": "Publication",
+                "immediately": "Immediately",
+                "draft": "Draft"
+            },
+            "cancel_creation": "Cancel creation"
+        },
+        "info": [
+            "Page was successfully created",
+            "Page creation failed, retry process"
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+<div id="ac-relogin" class="ac-relogin hide">
+    <div id="ac-relogin-overlay" class="ac-relogin-overlay hide">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div class="ac-relogin-form">
+        <div>
+            <div class="text-center">
+                <a href="https://www.admin-console.org/" target="_blank" class="ac-relogin-logo" rel="noopener noreferrer">
+                    <img id="ac-relogin-logo" src="img/logo-ob.svg" alt="AdminConsole Project" draggable="false">
+                </a>
+            </div>
+            <div class="mt-3">
+                <div class="ac-alert simple-ac-alert-primary" role="alert">{$lang_interface['relogin']['info']['relogin'][0]}<br>{$lang_interface['relogin']['info']['relogin'][1]}</div>
+            </div>
+            <div id="ac-relogin-submit" class="mt-3 hide">
+                <div class="ac-alert simple-ac-alert-warning" role="alert">{$lang_interface['relogin']['info']['submits']}:&nbsp;<strong id="ac-relogin-submit-count"></strong><br>{$lang_interface['relogin']['info']['max_submits']}:&nbsp;<strong>5</strong></div>
+            </div>
+            <div id="ac-relogin-maxsubmit" class="mt-3 hide">
+                <div class="ac-alert simple-ac-alert-danger" role="alert">{$lang_interface['relogin']['info']['max_submits_exceeded']}</div>
+            </div>
+            <div id="ac-relogin-info" class="mt-3 hide">
+                <div class="ac-alert simple-ac-alert-danger" role="alert">{$lang_interface['relogin']['info']['invalid_data']}</div>
+            </div>
+            <div>
+                <form id="ac-relogin-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" n:attr="value => $user_info['username']" disabled required>
+                    </div>
+                    <div class="form-group">
+                        <div id="ac-relogin-pwd-con">
+                            <input type="password" id="ac-relogin-pwd-input" class="form-control" name="password" n:attr="placeholder => $lang_interface['relogin']['password']" required>
+                            <button id="ac-relogin-pwd-button" class="btn ac-password-show" type="button" alt="Show">
+                                <i id="ac-relogin-pwd-icon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        </div>
+                    <div class="form-group">
+                        <button id="ac-relogin-button" class="btn btn-primary btn-block" type="submit" disabled>{$lang_interface['relogin']['login']}</button>
+                    </div>
+                    <div>
+                        <a href="login.php?action=logout" class="text-danger">{$lang_interface['logout']}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

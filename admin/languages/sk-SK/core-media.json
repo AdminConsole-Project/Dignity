@@ -1,0 +1,30 @@
+{
+    "library": {
+        "title": "Multimédiá",
+        "list": {
+            "preview": "Náhľad",
+            "name": "Meno",
+            "size": "Veľkosť",
+            "location": "Lokácia",
+            "copy": "Kopírovať",
+            "type": "Typ",
+            "mime": "Mime",
+            "actions": "Akcie",
+            "delete": "Vymazať"
+        },
+        "info": [
+            "Obrázok bol úspešne vymazaný",
+            "Vymazanie obrázka zlyhalo, opakujte proces"
+        ]
+    },
+    "upload": {
+        "title": "Nahrať multimédium"
+    },
+    "uploader": {
+        "filename": "Názov súboru",
+        "browse": "Prehľadávať",
+        "uploaded_files": "Nahrané súbory",
+        "drag_files_here": "Presuňte sem súbory"
+    },
+    "max_file_size_to_upload": "Maximálna veľkosť súboru na nahratie"
+}

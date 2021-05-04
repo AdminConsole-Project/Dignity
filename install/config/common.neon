@@ -1,0 +1,24 @@
+http:
+	headers:
+		X-Powered-By: Dignity by AdminConsole Project
+
+application:
+	silentLinks: true
+
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+session:
+	name: ac_installation
+
+services:
+	- Nette\Application\Routers\SimpleRouter('Step:default')
+	- App\Model\LocalizationManager
+	- App\Model\CompatibilityChecker
+	- App\Model\DbConnChecker
+	- App\Model\InstallationManager

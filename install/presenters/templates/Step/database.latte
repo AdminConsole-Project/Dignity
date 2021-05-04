@@ -1,0 +1,166 @@
+{block content}
+	<div id="ac-info">
+		<div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang->step->databaseConfiguration->error[0]}</div>
+	</div>
+	<h3>{$lang->step->databaseConfiguration->databaseConfiguration}</h3>
+	<form id="ac-form" action="{link Process:database, lang: $lang->langCode}" method="post" @submit="sendForm">
+		<div class="ac-form row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbType}&nbsp;<span class="text-danger">*</span></label>
+					<select class="form-control mb-3" name="dbDriver" required>
+						<option value="mysql" selected>MySQL</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbHost}&nbsp;<span class="text-danger">*</span></label>
+					<input type="text" class="form-control" name="dbHost" required n:attr="value: $stepData?->host">
+					<div class="text-right">
+						<a href="javascript:void(0);" v-on:click="dbHost = !dbHost">
+							<i class="fas fa-question-circle"></i>
+						</a>
+					</div>
+					<div v-show="dbHost">
+						<small class="d-block">{$lang->step->databaseConfiguration->dbPortInfo[0]}&nbsp;{$lang->step->databaseConfiguration->dbPortInfo[1]}&nbsp;{$lang->step->databaseConfiguration->dbPortInfo[2]}</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbName}&nbsp;<span class="text-danger">*</span></label>
+					<input type="text" class="form-control" name="dbName" required n:attr="value: $stepData?->name">
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbPrefix}&nbsp;<span class="text-danger">*</span></label>
+					{syntax off}
+						<input type="text" class="form-control" name="dbPrefix" pattern="^([a-z0-9]{2,5})[_]$" required n:attr="value: $stepData?->prefix ? $stepData->prefix : $dbPrefix">
+					{/syntax}
+					<div class="text-right">
+						<a href="javascript:void(0);" v-on:click="dbPrefix = !dbPrefix">
+							<i class="fas fa-question-circle"></i>
+						</a>
+					</div>
+					<div v-show="dbPrefix">
+						<small class="d-block">{$lang->step->databaseConfiguration->dbPrefixInfo[0]}</small>
+						<small class="d-block">{$lang->step->databaseConfiguration->dbPrefixInfo[1]}&nbsp;{$lang->step->databaseConfiguration->dbPrefixInfo[2]}&nbsp;{$lang->step->databaseConfiguration->dbPrefixInfo[3]}</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbUsername}</label>
+					<input type="text" class="form-control" name="dbUser" n:attr="value: $stepData?->user">
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->dbPassword}</label>
+					<div id="ac-pwd-con">
+						<input type="password" id="ac-pwd-input" class="form-control" name="dbPassword" n:attr="value: $stepData?->password">
+						<button id="ac-pwd-button" class="btn ac-password-show" type="button" alt="Show">
+							<i id="ac-pwd-icon" class="fas fa-eye"></i>
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>{$lang->step->databaseConfiguration->testConnection}</label>
+					<button class="btn btn-block btn-success mb-3" type="button" v-on:click="testDbConnection()">{$lang->step->databaseConfiguration->test}</button>
+					<div v-show="loader">
+						<div class="spinner-border" role="status"></div>
+					</div>
+					<div id="ac-db-info">
+						<div class="ac-alert simple-ac-alert-success hide" role="alert">{$lang->step->databaseConfiguration->dbTest[0]}</div>
+						<div class="ac-alert simple-ac-alert-danger hide" role="alert">{$lang->step->databaseConfiguration->dbTest[1]}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			new Vue({
+				el: '#ac-form',
+				data: {
+					dbHost: true,
+					dbPrefix: true,
+					loader: false,
+					response: null
+				},
+				methods: {
+					async sendForm(e) {
+
+						e.preventDefault();
+
+						await this.send();
+
+						document.getElementById('ac-info').children[0].classList.add("hide");
+
+						if (this.response.status === 'OK'){
+							window.location = this.response.redirectUrl;
+						}else {
+							let data = this.response.message
+
+							Object.keys(this.response.message).forEach(function(key){
+
+								if (data[key] === 'Database connection failed'){
+									document.getElementById('ac-info').children[0].classList.remove("hide");
+								}
+							});
+
+							this.response.db.log.errorInfo.forEach(function(data){
+
+								console.log(data);
+							});
+						}
+					},
+					async send(){
+
+						const data = await axios.post(
+							this.$el.getAttribute('action'),
+							new FormData(this.$el)
+						)
+						.then(function (response) {
+
+							return response.data;
+
+						});
+
+						this.response = data;
+					},
+					async testDbConnection(){
+						this.loader = true;
+
+						await this.dbConnect();
+
+						document.getElementById('ac-db-info').children[0].classList.add("hide");
+						document.getElementById('ac-db-info').children[1].classList.add("hide");
+
+						this.loader = false;
+						if (this.response.status === 'OK'){
+
+							document.getElementById('ac-db-info').children[0].classList.remove("hide");
+
+						}else {
+
+							document.getElementById('ac-db-info').children[1].classList.remove("hide");
+							this.response.log.errorInfo.forEach(function(data){
+
+								console.log(data);
+							});
+						}
+
+					},
+					async dbConnect(){
+
+						const data = await axios.post(
+							{link Process:checkDbConnection},
+							new FormData(this.$el)
+						)
+						.then(function (response) {
+
+							return response.data;
+
+						});
+
+						this.response = data;
+					}
+				}
+			})
+		</script>
+	</form>
+	<script src="{$basePath}/assets/js/pwd-show.js"></script>
+{/block}

@@ -1,0 +1,14 @@
+{block content}
+    <h1>{$name}</h1>
+    <p>{$description}</p>
+    <hr n:if="$articles">
+    {foreach $articles as $row}
+        <section class="border rounded p-3 mb-3">
+            <h2>
+                <a n:href="Article:default, id: $row->ID" target="_blank">{$row->title}</a>
+            </h2>
+            <strong>{$row->date|date:'d.m.Y'}</strong>
+            <p class="m-0"><strong>Hits:</strong>&nbsp;{$row->hits}</p>
+        </section>
+    {/foreach}
+{/block}

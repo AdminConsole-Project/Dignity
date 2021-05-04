@@ -1,0 +1,21 @@
+{
+    "languages": {
+        "title": "Jazyky",
+        "refresh_site": "Obnoviť stránku",
+        "list": {
+            "default": "Predvolené",
+            "title": "Názov",
+            "title_native": "Domáci názov",
+            "language_code": "Kód jazyka",
+            "version": "Verzia",
+            "update": "Aktualizovať",
+            "set": "Nastaviť ako predvolený jazyk?"
+        },
+        "info": {
+            "set": [
+                "Zmena jazyka prebehla úspešne",
+                "Zmena jazyka zlyhala, opakujte proces"
+            ]
+        }
+    }
+}

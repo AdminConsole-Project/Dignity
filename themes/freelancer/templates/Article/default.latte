@@ -1,0 +1,9 @@
+{block content}
+    <h1>{$content_details->title}</h1>
+    <div class="border border-primary rounded p-3 mb-3">
+        <p class="m-0">{$content_details->author->firstname}&nbsp;{$content_details->author->lastname}</p>
+        <p class="m-0">{$content_details->date|date: 'd.m.Y'}</p>
+        <p class="m-0"><strong>Hits:</strong>&nbsp;{$content_details->hits}</p>
+    </div>
+    {$content}
+{/block}

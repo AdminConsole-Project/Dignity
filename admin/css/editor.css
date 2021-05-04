@@ -1,0 +1,31 @@
+/**
+ * @author    Jakub Habaj
+ * @copyright 2020-2021 Jakub Habaj
+ * @license   GNU General Public License version 3; see LICENSE.txt
+ */
+
+
+.editor-sidebar {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 1rem;
+}
+
+.editor-hr {
+    border-top: 1px solid #ced4da;
+    margin: 0 -1rem;
+}
+
+.editor-text {
+    margin: 0;
+}
+
+.editor-text-600 {
+    font-weight: 600;
+}
+
+.editor-btn {
+    padding: 7px 12px;
+    border-radius: 50px;
+    border-width: 2px;
+}
